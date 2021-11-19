@@ -1,37 +1,31 @@
-## Welcome to GitHub Pages
+# Daniel Messhams final project
 
-You can use the [editor on GitHub](https://github.com/DMessham/CS30-Major-Project/edit/main/docs/index.md) to maintain and preview the content for your website in Markdown files.
+#Description
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+This is a basic ui for a home/rv/boat/car automation management type system, the project will run off a raspberry pi
 
-### Markdown
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+## must have list
 
-```markdown
-Syntax highlighted code block
+ - connectable over local wifi
+ - usable with both mobile & desktop
+ - able to affect the real world (ex: smart lights, servos, speakers, etc)
+ - able to run off a raspberry pi 3
+ - ability to control audio
+ - 
 
-# Header 1
-## Header 2
-### Header 3
+### nice to have 
 
-- Bulleted
-- List
+ - a decent looking ui
+ - reliability
+ - able to recover from power loss w/o human intervention
+ - integratetion w/ Samsung smart things, ring, other standard systems
+ - support for running off/managing batterys + auto power off
+ - camera support
+ - able to display stuff on a local screen as well
+ - add devices&stuff without rewriting/updating code (avoid hard coded values for peripherals, modularity)
+ - support for android auto integration for car/camper use
+ - bluetooth based android auto support
+ - 
 
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/DMessham/CS30-Major-Project/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+[main screen](http://DMessham.github.io/CS30-Major-Project)
