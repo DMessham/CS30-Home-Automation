@@ -28,4 +28,4 @@ This is a basic ui for a home/rv/boat/car automation management type system, the
  - bluetooth based android auto support
  - 
 
-[main screen](http://DMessham.github.io/CS30-Major-Project/screens/mainMenu)
+[main screen](http://DMessham.github.io/CS30-Major-Project/screens/mainMenu/index.html)
