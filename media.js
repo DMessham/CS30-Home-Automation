@@ -7,11 +7,13 @@
 
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(width+20, 300);
 }
 
 function draw() {
   background(20);
+  fill('gray')
+  rect(100,100,100,100)
 }
 
 class Button {

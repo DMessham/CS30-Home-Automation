@@ -50,7 +50,7 @@ let carFueltank0 = {
 }
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(innerWidth, windowHeight);
 }
 
 function draw() {

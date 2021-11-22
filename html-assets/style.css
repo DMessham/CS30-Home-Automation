@@ -29,10 +29,12 @@ h2 {
 
 body{
 	background-color: rgb(44, 85, 37);
-	background-image: url("style/bg/window-gradient.png"), url("style/bg/square2.png");
-	background-size: cover, contain;
-	background-position: left top, left top;
-	background-repeat: no-repeat, repeat;
+	background-image: url("style/bg/square2.png");
+	background-size: contain;
+	background-position: center;
+	background-repeat: repeat;
+	margin: 2%;
+	padding: 1%;
 }
 
 p {
@@ -118,7 +120,7 @@ nav {
 	background-repeat: repeat-x;
 	background-size: cover;
 	background-size: 100%;
-	text-align: center;
+	text-align: left;
 	list-style-type: none;
 	display: block;
 	line-height: 0.5;
@@ -144,8 +146,8 @@ nav li {
 	list-style-type: none;
 	display: inline-block;
 	padding: 0px;
-	margin-top: 5px;
-	margin-bottom: 5px;
+	margin-top: 0px;
+	margin-bottom: 0px;
 	margin-left: 1px;
 	margin-right: 1px;
 	position: -webkit-sticky; /* Safari */
@@ -161,7 +163,7 @@ nav li a {
 	text-align: center;
 	text-decoration: none;
 	display: inline-block;
-	padding: 5px 3.5px;
+	padding: 6px 4.5px;
 	border-style: solid;
 	border-width: 2px;
 	border-radius: 5px;
@@ -178,7 +180,7 @@ nav li a name{
 	border: 2px solid rgba(37, 114, 37, 0.322);
 	color: rgba(255, 255, 255, 0.921);
 	opacity: 1;
-	font-size:22px;
+	font-size:20px;
 	text-align: center;
 	text-decoration: none;
 	display: inline-block;
@@ -198,7 +200,7 @@ nav li a:hover {
 	background-repeat: repeat-x;
 	border-style: solid;
 	font-size:21px;
-	padding: 5px 4.5px;
+	padding: 3px 3.5px;
 	border-width: 4px;
 	border-radius: 5px;
 	background-image: url("style/BG/bg_navbar.bmp");
