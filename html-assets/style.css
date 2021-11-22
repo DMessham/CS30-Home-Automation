@@ -33,8 +33,11 @@ body{
 	background-size: contain;
 	background-position: center;
 	background-repeat: repeat;
-	margin: 2%;
-	padding: 1%;
+	padding-left: 1.25%;
+	padding-right: 1.25%;
+	padding-bottom: 0.25%;
+	padding-top: 0.25%;
+	margin: 15px;
 }
 
 p {
