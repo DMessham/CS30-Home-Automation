@@ -7,12 +7,22 @@
 
 
 function setup() {
-  createCanvas(innerWidth, 300);
+  createCanvas(innerWidth-350, 300).parent("jscanvas");
+}
+
+function windowResized(){
+  createCanvas(innerWidth-350, 300).parent("jscanvas");
 }
 
 function draw() {
+  //parent("div p canvas");
   background(20);
-  fill('gray')
+  testdraw()
+  
+}
+
+function testdraw() {
+  fill('gray').
   rect(100,100,100,100)
 }
 

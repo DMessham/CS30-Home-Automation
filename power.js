@@ -6,56 +6,66 @@
 // - describe what you did to take this project "above and beyond"
 
 let bat0 = {
-  percent=100,
-  voltage=3.7,
-  voltageChange=-0.0,
-  charging=true,
-  exists=true,
-  timeToEmpty=999999999999,
-  timeToFull=0,
-  progressbar,
+  percent:100,
+  voltage:3.7,
+  voltageChange:-0.0,
+  charging:true,
+  exists:true,
+  timeToEmpty:99999999999,
+  timeToFull:0,
+  progressbar:0,
 }
 
 let acIn0 = {
-  voltage=120,
-  amperage,
-  connected=true,
+  voltage:120,
+  amperage:0,
+  connected:true,
 }
 
 let dcIn0 = {
-  voltage=12,
-  amperage,
-  connected,
-  voltRangebar,
+  voltage:12,
+  amperage:0,
+  connected:false,
+  voltRangebar:0,
 
 }
 
 let carBat0 = {
-  percent=100,
-  voltage=12.5,
-  maxVolt=15,
-  minVoltage=11.5,
-  voltageChange=-0.0,
-  charging=true,
-  exists=true,
-  voltRangebar,
+  percent:100,
+  voltage:12.5,
+  maxVolt:15,
+  minVoltage:11.5,
+  voltageChange:-0.0,
+  charging:true,
+  exists:true,
+  voltRangebar:0,
 }
 let carFueltank0 = {
-  percent=100,
-  capacityLiter=68,
-  usageLiter=0,
-  temperature=10,
-  usageRangeLkm=
-  usageRangeMpg
+  percent:100,
+  capacityLiter:68,
+  usageLiter:0,
+  temperature:10,
+  usageRangeLkm:9999999,
+  usageRangeMpg:0,
 }
 
 function setup() {
-  createCanvas(innerWidth, windowHeight);
+  createCanvas(innerWidth-350, 300).parent("jscanvas");
+}
+
+function windowResized(){
+  createCanvas(innerWidth-350, 300).parent("jscanvas");
 }
 
 function draw() {
   background(20);
+  testdraw()
+  
+}
 
+function testdraw() {
+  fill('gray').
+  rect(100,100,100,100)
 }
 
 

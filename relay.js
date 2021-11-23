@@ -7,11 +7,22 @@
 
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(innerWidth-350, 300).parent("jscanvas");
+}
+
+function windowResized(){
+  createCanvas(innerWidth-350, 300).parent("jscanvas");
 }
 
 function draw() {
   background(20);
+  testdraw()
+  
+}
+
+function testdraw() {
+  fill('gray').
+  rect(100,100,100,100)
 }
 
 class Button {
