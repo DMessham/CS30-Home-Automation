@@ -2,20 +2,36 @@
 // Daniel Messham
 // Date
 //
-// Extra for Experts:
-// - describe what you did to take this project "above and beyond"
+// Common ui elements and settings (Hopefully)
 
+let visualSettings;//settigs related to appearance
+
+let hardwareSettings;//settings related to io and hardware control (for whatever i use to allow for html+js to control RPi GPIO stuf)
+
+let secutitySettings//settings related te security (mostly read only, many will only be editable w/ physical access for security reasons)
+
+let drawWidth;
 
 function setup() {
-  createCanvas(innerWidth-350, 300).parent("jsstatus");
+  drawWidth = windowWidth*0.8;
+  createCanvas(drawWidth, 300).parent("jscanvas");
 }
 
 function windowResized(){
-  createCanvas(innerWidth-350, 300).parent("jsstatus");
+  drawWidth = windowWidth*0.8;
+  createCanvas(drawWidth, 300).parent("jscanvas");
 }
 
-function draw(){
-  background(20)
+function draw() {
+  background(20);
+  testdraw()
+  drawMediaStat(media0, 10,25,drawWidth)
+}
+
+function testdraw() {
+  noStroke()
+  fill('gray').
+  rect(0,0,width,4)
 }
 
 class Button {

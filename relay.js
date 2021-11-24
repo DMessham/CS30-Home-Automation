@@ -40,11 +40,13 @@ function testdraw() {
 
 function menu(){
   for(let list; list<relayTable.length; list++){
-    for(let col; col<relayTable[list].length; col++){
+    //for(let col; col<relayTable[list].length; col++){
       item = new Button(50*list,3,50,30,relayTable[list][2]+" "+relayTable[list][3],'green',40,70,200)
       item.display;
       if (item.isPointInButton){relayTable[list][3]!=relayTable[list][3]};
-    }
+      fill('white')
+      textSize(16)
+      text(relayTable[list][2]+" "+relayTable[list][3], 4, 50*list)
   }
 }
 

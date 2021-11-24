@@ -133,8 +133,8 @@ nav {
 	margin-bottom: 0.2%;
 	margin-top: 0.1%;
 	border-style: solid;
-	border-width: 1.5px;
-	border-radius: 3px;
+	border-width: 2.5px;
+	border-radius: 5px;
 	position: -webkit-sticky; /* Safari */
 	position: sticky;
 	overflow: hidden;
@@ -162,7 +162,7 @@ nav li a {
 	border: 2px solid rgba(37, 114, 37, 0.012);
 	color: rgba(255, 255, 255, 0.621);
 	opacity: 1;
-	font-size:20px;
+	font-size:22px;
 	text-align: center;
 	text-decoration: none;
 	display: inline-block;
@@ -170,7 +170,7 @@ nav li a {
 	border-style: solid;
 	border-width: 2px;
 	border-radius: 5px;
-	background-image: url("style/buttons/button_trasparent1.png");
+	background-image: url("style/BG/bar2_grey.bmp");
 	background-size: cover;
 	background-size: '100%';
 	background-position: center;
@@ -202,11 +202,11 @@ nav li a:hover {
 	text-decoration: underline;
 	background-repeat: repeat-x;
 	border-style: solid;
-	font-size:21px;
+	/*font-size:22px;
 	padding: 3px 3.5px;
 	border-width: 4px;
-	border-radius: 5px;
-	background-image: url("style/BG/bg_navbar.bmp");
+	border-radius: 5px;*/
+	background-image: url("style/BG/bar2_green.bmp");
 	background-size: cover;
 	background-position: center;
 	background-clip: border-box;
@@ -215,28 +215,32 @@ nav li a:hover {
 .active {
 	color: rgba(25, 212, 72, 0.44);
 	opacity: 1;
-	font-size:21px;
+	font-size:22px;
 	text-align: center;
 	text-decoration: underline;
 	display: block;
-	padding: 4px 6.5px;
+	background-image: url("style/BG/bar2_green.bmp");
+	background-size: cover;
+	background-position: center;
+	background-clip: border-box;
+	/*padding: 4px 6.5px;
 	border-style: solid;
 	border-color: rgba(37, 114, 37, 0.322);
 	border-width: 2px;
-	border-radius: 4px;
+	border-radius: 4px;*/
 }
 .active:hover {
 	background-color: rgba(0, 128, 0, 0.24);
 	border-color: rgba(255, 255, 255, 0.06);
 	border-style: solid;
 	color: white;
-	font-size:22px;
+	/*font-size:22px;*/
 	text-decoration: underline;
 	background-repeat: repeat-x;
 	border-style: solid;
-	padding: 2px 4px;
+	/*padding: 2px 4px;
 	border-width: 4px;
-	border-radius: 4px;
+	border-radius: 4px;*/
   }
 img {
 	border-radius: 5px;

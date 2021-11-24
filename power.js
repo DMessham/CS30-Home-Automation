@@ -6,6 +6,8 @@
 // - describe what you did to take this project "above and beyond"
 
 let bat0 = {
+  name:"bat0",
+  id:"battery0",
   percent:100,
   voltage:3.7,
   voltageChange:-0.0,
@@ -50,25 +52,39 @@ let carFueltank0 = {
 }
 
 function setup() {
-  createCanvas(innerWidth*0.7, 300).parent("jscanvas");
+  drawWidth = windowWidth*0.8;
+  createCanvas(drawWidth, 300).parent("jscanvas");
 }
 
 function windowResized(){
-  createCanvas(windowWidth*0.8, 300).parent("jscanvas");
+  drawWidth = windowWidth*0.8;
+  createCanvas(drawWidth, 300).parent("jscanvas");
 }
 
 function draw() {
   background(20);
   testdraw()
-  
+  drawBattStat(bat0, 10,25,drawWidth)
 }
 
 function testdraw() {
+  noStroke()
   fill('gray').
-  rect(100,100,100,100)
+  rect(0,0,width,4)
 }
 
-
+function drawBattStat(batt, x,y,wid){
+  fill('white');
+  textSize(17)
+  text("Battery: " + bat0.name + "id: " + bat0.id + ": " + bat0.percent + "%, charging: " + bat0.charging + ", voltage: " + bat0.voltage + "V", x, y);
+  strokeWeight(1);
+  stroke("white");
+  fill('gray');
+  rect(x,y+13,wid-(x*2), 13);
+  fill('green');
+  noStroke();
+  rect(x+1,y+16,(wid-(x*2)-1)*(bat0.percent/100),7);
+}
 
 class Button {
   constructor(x,y,buttonWidth, buttonHeight, text, accent, norm, hover, txtcolor) {
