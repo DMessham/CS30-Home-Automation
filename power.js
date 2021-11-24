@@ -50,11 +50,11 @@ let carFueltank0 = {
 }
 
 function setup() {
-  createCanvas(innerWidth-350, 300).parent("jscanvas");
+  createCanvas(innerWidth*0.7, 300).parent("jscanvas");
 }
 
 function windowResized(){
-  createCanvas(innerWidth-350, 300).parent("jscanvas");
+  createCanvas(windowWidth*0.8, 300).parent("jscanvas");
 }
 
 function draw() {

@@ -1,11 +1,9 @@
-# CS30-Major-Project
-Daniel Messham's Computer Science 30 Major Project
+# Daniel Messhams final project
 
-#Major project Proposal
+# Description
 
-## Description
+This is a basic ui for a home/rv/boat/car automation management type system, the project will run off a raspberry pi
 
-a home automation type system that runs a webpage for remote management
 
 ## must have list
 
@@ -13,8 +11,10 @@ a home automation type system that runs a webpage for remote management
  - usable with both mobile & desktop
  - able to affect the real world (ex: smart lights, servos, speakers, etc)
  - able to run off a raspberry pi 3
+ - ability to control audio
+ - 
 
-## nice to have 
+### nice to have 
 
  - a decent looking ui
  - reliability
@@ -24,4 +24,6 @@ a home automation type system that runs a webpage for remote management
  - camera support
  - able to display stuff on a local screen as well
  - add devices&stuff without rewriting/updating code (avoid hard coded values for peripherals, modularity)
- 
+ - support for android auto integration for car/camper use
+ - bluetooth based android auto support
+ - 
