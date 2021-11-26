@@ -6,7 +6,6 @@
 // - describe what you did to take this project "above and beyond"
 
 let media0 = {
-  network:false,
   sourceName:"[NO INPUT]",
   sourceID:"none",
   sourceType:"test",

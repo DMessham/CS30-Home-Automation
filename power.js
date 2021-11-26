@@ -6,46 +6,101 @@
 // - describe what you did to take this project "above and beyond"
 
 let bat0 = {
-  name:"bat0",
+  name:"RPi Battery",
   id:"battery0",
+  type:"Li-ION",
+  capacityMAH:0000,
+  cells:1,
+  percentKnown:true,
   percent:100,
   voltage:3.7,
   voltageChange:-0.0,
   charging:true,
   exists:true,
-  timeToEmpty:99999999999,
+  timeToEmpty:0,
+  timeToFull:0,
+  progressbar:0,
+}
+
+let bat1 = {
+  name:"Car Battery",
+  id:"battery1",
+  type:"Sealed Lead-Acid",
+  capacityMAH:0000,
+  cells:1,
+  percentKnown:false,
+  percent:00,
+  voltage:12,
+  voltageChange:-0.0,
+  charging:true,
+  exists:true,
+  timeToEmpty:0,
+  timeToFull:0,
+  progressbar:0,
+}
+
+let bat2 = {
+  name:"House Battery",
+  id:"battery2",
+  type:"Sealed Lead-Acid",
+  capacityMAH:0000,
+  cells:2,
+  percentKnown:false,
+  percent:00,
+  voltage:24,
+  voltageChange:-0.0,
+  charging:true,
+  exists:true,
+  timeToEmpty:0,
   timeToFull:0,
   progressbar:0,
 }
 
 let acIn0 = {
-  voltage:120,
+  safeVoltageMin:110,
+  curVoltage:120,
+  safeVoltageMax:125,
   amperage:0,
   connected:true,
+  phaseCount:2,
 }
 
 let dcIn0 = {
-  voltage:12,
+  safeVoltageMin:12,
+  curVoltage:13,
+  safeVoltageMax:15,
   amperage:0,
   connected:false,
-  voltRangebar:0,
+  voltRangebar:50,
+
+}
+let acOut0 = {
+  safeVoltage:110,
+  curVoltage:120,
+  safeVoltageMax:125,
+  amperage:0,
+  connected:true,
+  phaseCount:2,
+}
+
+let dcOut0 = {
+  safeVoltageMin:4.5,
+  curVoltage:5.2,
+  safeVoltageMax:5.6,
+  amperage:0,
+  connected:false,
+  voltRangebar:50,
 
 }
 
-let carBat0 = {
-  percent:100,
-  voltage:12.5,
-  maxVolt:15,
-  minVoltage:11.5,
-  voltageChange:-0.0,
-  charging:true,
-  exists:true,
-  voltRangebar:0,
-}
-let carFueltank0 = {
+let fuel0 = {
+  type:"Gasoline",
+  name:"Main Fuel Tank",
+  sensorID:"fuel0",
   percent:100,
   capacityLiter:68,
   usageLiter:0,
+  flowRateLiterMin:0,
   temperature:10,
   usageRangeLkm:9999999,
   usageRangeMpg:0,
@@ -65,6 +120,10 @@ function draw() {
   background(20);
   testdraw()
   drawBattStat(bat0, 10,25,drawWidth)
+  drawBattStat(bat1, 10,75,drawWidth)
+  drawPowerStat(acIn0, 10,125,drawWidth)
+  drawPowerStat(acOut0, 10,175,drawWidth)
+  drawFuelStat(fuel0, 10,225,drawWidth)
 }
 
 function testdraw() {
@@ -74,9 +133,47 @@ function testdraw() {
 }
 
 function drawBattStat(batt, x,y,wid){
+  let isCharging = "Unknown Status"
+  if (batt.charging){
+    if(batt.percent>99){isCharging = '(Fully Charged)'}
+    else{isCharging = 'Charged'}
+  }
+  else{isCharging = 'Left'}
   fill('white');
   textSize(17)
-  text("Battery: " + bat0.name + "id: " + bat0.id + ": " + bat0.percent + "%, charging: " + bat0.charging + ", voltage: " + bat0.voltage + "V", x, y);
+  text("Battery: " + batt.name + " (id:" + batt.id + "): " + batt.percent + "% " + isCharging + ", voltage: " + batt.voltage + "V, Type: " + batt.type+" ("+batt.cells+"cells, "+ batt.capacityMAH+"MaH)", x, y);
+  strokeWeight(1);
+  stroke("white");
+  fill('gray');
+  rect(x,y+13,wid-(x*2), 13);
+  fill('green');
+  noStroke();
+  rect(x+1,y+16,(wid-(x*2)-1)*(bat0.percent/100),7);
+}
+
+function drawFuelStat(fuel, x,y,wid){
+  fill('white');
+  textSize(17)
+  text("Fuel: " + fuel.name + " (Id:" + fuel.sensorID + "," + fuel.type  + "): " + fuel.percent + "%, "  + fuel.usageRangeLkm + "L/100km (Capacity:"+fuel.capacityLiter+"Liters, Flow"+ fuel.flowRateLiterMin+"Liter/min)", x, y);
+  strokeWeight(1);
+  stroke("white");
+  fill('gray');
+  rect(x,y+13,wid-(x*2), 13);
+  fill('green');
+  noStroke();
+  rect(x+1,y+16,(wid-(x*2)-1)*(bat0.percent/100),7);
+}
+
+function drawPowerStat(Source, x,y,wid){
+  let isConnected = "Unknown Status"
+  if (Source.connected){
+    if(Source.percent>99){isConnected = '(Fully Charged)'}
+    else{isConnected = 'Conn'}
+  }
+  else{isCharging = 'DisConnected'}
+  fill('white');
+  textSize(17)
+  text("Charger: " + Source.name + " (id:" + Source.id + "): " + Source.percent + "% " + isConnected + ", voltage: " + Source.voltage + "V, Type: " + Source.type+" ("+Source.cells+"cells, "+ Source.capacityMAH+"MaH)", x, y);
   strokeWeight(1);
   stroke("white");
   fill('gray');
