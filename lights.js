@@ -2,14 +2,27 @@
 // Daniel Messham
 // Date
 //
-// Common ui elements and settings (Hopefully)
+// Extra for Experts:
+// - describe what you did to take this project "above and beyond"
 
-let visualSettings;//settigs related to appearance
-
-let hardwareSettings;//settings related to io and hardware control (for whatever i use to allow for html+js to control RPi GPIO stuf)
-
-let secutitySettings//settings related te security (mostly read only, many will only be editable w/ physical access for security reasons)
-
+let media0 = {
+  sourceName:"[SOURCE_NAME]",
+  sourceID:"SOURCE",
+  sourceType:"[SOURCE_TYPE]",
+  sourceIcon:"none",
+  mediaType:"audio",
+  mediaCodec:"none",
+  mediaStateName:0,
+  mediaStateString:"[PLAYBACK_STATUS]",
+  mediaTitle:"[TEST_SONG_TITLE]",
+  mediaArtistName:"[TEST_SONG_ARTIST]",
+  mediaAlbumName:"[TEST_ALBUM_NAME]",
+  mediaAlbumArt:"null",
+  mediaPlayedSec:60,
+  mediaIsLive:false,
+  mediaLengthSec:200,
+  mediaProgress:30,
+}
 let drawWidth;
 
 function setup() {
@@ -23,8 +36,41 @@ function windowResized(){
 }
 
 function draw() {
+  background(20);
+  testdraw()
+  drawMediaStat(media0, 7,25,drawWidth)
+  mediaControl(media0, 15, 150, drawWidth, drawWidth/6, 15)
 }
 
+function testdraw() {
+  noStroke()
+  fill('gray').
+  rect(0,0,width,4)
+}
+
+function drawMediaStat(media, x,y,wid){
+  fill('white');
+  rect(x,y-20,30,30)//source icon placeholder
+  textSize(27)//info
+  text("placeholder", x+33, y);
+}
+
+function mediaControl(source, x, y, wid, size, space){
+  fill(`cyan`)//
+  rect(x, y+space, size, size)
+
+  fill(`orange`)//
+  rect(x + (size+space), y+space, size, size)
+
+  fill(`purple`)//
+  rect(x + 2*(size+space), y+space, size, size)
+
+  fill(`orange`)//next
+  rect(x + 3*(size+space), y+space, size, size)
+
+  fill(`blue`)//options
+  rect(x + 4*(size+space), y+space, size, size)
+}
 
 class Button {
   constructor(x,y,buttonWidth, buttonHeight, text, accent, norm, hover, txtcolor) {
@@ -127,5 +173,3 @@ class toggle { // still wip
     return(x>this.x && x<this.x+this.width && y>this.y && y<this.y+this.height)
   }
 }
-
-// todo: sliders, radio buttons(ui element), tabs(might just use multiple html pages), always present status bar type thing, more consistant framework, RPI GPIO interaction via .SH files
