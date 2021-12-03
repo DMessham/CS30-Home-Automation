@@ -25,3 +25,6 @@ This is a ui framework for a home/rv/boat/car automation management type system,
  - add devices&stuff without rewriting/updating code (avoid hard coded values for peripherals, modularity)
  - support for android auto integration for car/camper use
  - bluetooth based android auto support
+ 
+
+[main screen](http://DMessham.github.io/CS30-Major-Project/home.html)
