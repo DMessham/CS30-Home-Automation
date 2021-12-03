@@ -2,14 +2,14 @@
 
 # Description
 
-This is a basic ui for a home/rv/boat/car automation management type system, the project will run off a raspberry pi
+This is a ui framework for a home/rv/boat/car automation management type system, the project will be disigned to run off a raspberry pi, but is meant to also be able to be modified to run off any machine with a script reading a text file and controlling io
 
 
 ## must have list
 
  - connectable over local wifi
  - usable with both mobile & desktop
- - capable of affecting the real world (ex: smart lights, servos, speakers, etc)
+ - capable of being easily modified to affect the real world (ex: smart lights, servos,speakers, etc) with multiple systems (ex thru js, writing to a file, etc)
  - able to run off a raspberry pi 3
 
 ### nice to have 

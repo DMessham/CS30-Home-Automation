@@ -5,23 +5,12 @@
 // Extra for Experts:
 // - describe what you did to take this project "above and beyond"
 
-let media0 = {
-  sourceName:"[SOURCE_NAME]",
-  sourceID:"SOURCE",
-  sourceType:"[SOURCE_TYPE]",
-  sourceIcon:"none",
-  mediaType:"audio",
-  mediaCodec:"none",
-  mediaStateName:0,
-  mediaStateString:"[PLAYBACK_STATUS]",
-  mediaTitle:"[TEST_SONG_TITLE]",
-  mediaArtistName:"[TEST_SONG_ARTIST]",
-  mediaAlbumName:"[TEST_ALBUM_NAME]",
-  mediaAlbumArt:"null",
-  mediaPlayedSec:60,
-  mediaIsLive:false,
-  mediaLengthSec:200,
-  mediaProgress:30,
+let light0 = {
+  lightRelayId:0,
+  lightName:'porch light',
+  lightOn:false,
+  lightBrightControl:true,
+  lightBright:0.35,
 }
 let drawWidth;
 
@@ -38,8 +27,7 @@ function windowResized(){
 function draw() {
   background(20);
   testdraw()
-  drawMediaStat(media0, 7,25,drawWidth)
-  mediaControl(media0, 15, 150, drawWidth, drawWidth/6, 15)
+  drawStat(light0, 7,25,drawWidth)
 }
 
 function testdraw() {
@@ -48,28 +36,27 @@ function testdraw() {
   rect(0,0,width,4)
 }
 
-function drawMediaStat(media, x,y,wid){
-  fill('white');
-  rect(x,y-20,30,30)//source icon placeholder
-  textSize(27)//info
-  text("placeholder", x+33, y);
-}
+function drawStat(light, x,y,wid){
+  strokeWeight(1);
+  stroke("white");//brighnessbar bg
+  fill('gray');
+  rect(x+39,y+8,wid-(x*2)-43, 9);
+  fill('green');//brightnessbar fill
+  noStroke();
+  rect(x+41,y+9,((wid-(x*2)-44)*(light.lightBright)),7);
+  circle(((wid-(x*2)-44)*(light.lightBright)), y+15, 16)
 
-function mediaControl(source, x, y, wid, size, space){
-  fill(`cyan`)//
-  rect(x, y+space, size, size)
+  stroke('blue')
+  if(light.on)(fill("yellow"))
+  else(fill('gray'));
 
-  fill(`orange`)//
-  rect(x + (size+space), y+space, size, size)
+  rect(x,y-13,32,32)//stat icon&button placeholder
+  fill('white')
 
-  fill(`purple`)//
-  rect(x + 2*(size+space), y+space, size, size)
-
-  fill(`orange`)//next
-  rect(x + 3*(size+space), y+space, size, size)
-
-  fill(`blue`)//options
-  rect(x + 4*(size+space), y+space, size, size)
+  textSize(16)//info
+  stroke('gray')
+  text(light.lightName + ": on: " + light.lightOn + " (set to " + light.lightBright*100 + "% brightness)", x+38, y);
+  
 }
 
 class Button {
@@ -102,38 +89,6 @@ class Button {
   }
   isPointInButton(x,y){
     return( x>this.x && x<this.x+this.width && y>this.y && y<this.y+this.height)
-  }
-}
-
-class progress { //idk how well this will work yet
-  constructor(x,y,objWidth, objHeight, progress, fill, bg, text, txtcolor) {
-    this.x = x;
-    this.y = y;
-    this.width = objWidth;
-    this.height = objHeight;
-    this.bgColor = bg
-    this.edgeColor = 160
-    this.fillColor = fill
-    this.progress = progress
-    this.label = text
-    this.textColor = txtcolor
-
-  }
-  display(){
-    fill(this.bgColor);
-    stroke(this.edgeColor)
-    strokeWeight(3)
-    rect(this.x,this.y,this.width,this.height)
-    fill(this.fillColor)
-    rect(this.x,this.y,this.width*(0.01*progress),this.height)
-    noStroke;
-    textSize(this.height/4)
-    fill(this.textColor)
-    text(this.label,this.x+50,this.y+50,this.width-50,this.height-50)
-  }
-  update(progress){
-    this.progress = progress;
-    
   }
 }
 

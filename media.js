@@ -125,37 +125,6 @@ class Button {
   }
 }
 
-class progress { //idk how well this will work yet
-  constructor(x,y,objWidth, objHeight, progress, fill, bg, text, txtcolor) {
-    this.x = x;
-    this.y = y;
-    this.width = objWidth;
-    this.height = objHeight;
-    this.bgColor = bg
-    this.edgeColor = 160
-    this.fillColor = fill
-    this.progress = progress
-    this.label = text
-    this.textColor = txtcolor
-
-  }
-  display(){
-    fill(this.bgColor);
-    stroke(this.edgeColor)
-    strokeWeight(3)
-    rect(this.x,this.y,this.width,this.height)
-    fill(this.fillColor)
-    rect(this.x,this.y,this.width*(0.01*progress),this.height)
-    noStroke;
-    textSize(this.height/4)
-    fill(this.textColor)
-    text(this.label,this.x+50,this.y+50,this.width-50,this.height-50)
-  }
-  update(progress){
-    this.progress = progress;
-    
-  }
-}
 
 class toggle { // still wip
   constructor(x,y,buttonWidth, buttonHeight, text, accent, norm, hover, txtcolor) {
