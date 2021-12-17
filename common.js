@@ -4,25 +4,51 @@
 //
 // Common ui elements and settings (Hopefully)
 
+
 let visualSettings;//settigs related to appearance
 
 let hardwareSettings;//settings related to io and hardware control (for whatever i use to allow for html+js to control RPi GPIO stuf)
 
 let secutitySettings//settings related te security (mostly read only, many will only be editable w/ physical access for security reasons)
 
-let drawWidth;
+//let drawWidth;
 
-function setup() {
-  drawWidth = windowWidth*0.8;
-  createCanvas(drawWidth, 300).parent("jscanvas");
+//function setup() {
+  //drawWidth = windowWidth*0.8;
+  //createCanvas(drawWidth, 300).parent("jscanvas");
+//}
+
+//function windowResized(){
+  //drawWidth = windowWidth*0.8;
+  //createCanvas(drawWidth, 300).parent("jscanvas");
+//}
+
+//placeholder for gpio&sensor reference values
+class Gpio {
+  constructor(name, type, id) {
+    this.name = name;
+    this.type = type;
+    this.id = id;
+  }
+  getName(){
+    return this.name
+  }
+
+  getType(){
+    return this.type
+  }
 }
 
-function windowResized(){
-  drawWidth = windowWidth*0.8;
-  createCanvas(drawWidth, 300).parent("jscanvas");
-}
 
-function draw() {
+
+class Car extends Gpio {
+  constructor(name){
+    super(name, 'car');
+  }
+
+  getName(){
+    return "this car is a: " + super.getName();
+  }
 }
 
 
