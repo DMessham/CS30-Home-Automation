@@ -41,13 +41,13 @@ class Gpio {
 
 
 
-class Car extends Gpio {
+class piface2 extends Gpio {
   constructor(name){
-    super(name, 'car');
+    super(name, 'test');
   }
 
   getName(){
-    return "this car is a: " + super.getName();
+    return "this is a: " + super.getName();
   }
 }
 
@@ -154,4 +154,4 @@ class toggle { // still wip
   }
 }
 
-// todo: sliders, radio buttons(ui element), tabs(might just use multiple html pages), always present status bar type thing, more consistant framework, RPI GPIO interaction via .SH files
+// todo: sliders, radio buttons(ui element), tabs(might just use multiple html pages), always present status bar type thing, more consistant framework, RPI GPIO interaction via .SH or .py files

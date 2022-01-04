@@ -36,6 +36,7 @@ function draw() {
 function testdraw() {
   fill('gray').
   rect(100,100,100,100)
+  text("placehoder,",0,0)
 }
 
 function menu(){
