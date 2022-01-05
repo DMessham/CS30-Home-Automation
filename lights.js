@@ -5,13 +5,7 @@
 // Extra for Experts:
 // - describe what you did to take this project "above and beyond"
 
-let light0 = {
-  lightRelayId:0,
-  lightName:'porch light',
-  lightOn:false,
-  lightBrightControl:true,
-  lightBright:0.35,
-}
+
 let drawWidth;
 
 function setup() {

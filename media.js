@@ -5,24 +5,7 @@
 // Extra for Experts:
 // - describe what you did to take this project "above and beyond"
 
-let media0 = {
-  sourceName:"[SOURCE_NAME]",
-  sourceID:"SOURCE",
-  sourceType:"[SOURCE_TYPE]",
-  sourceIcon:"none",
-  mediaType:"audio",
-  mediaCodec:"none",
-  mediaStateName:0,
-  mediaStateString:"[PLAYBACK_STATUS]",
-  mediaTitle:"[TEST_SONG_TITLE]",
-  mediaArtistName:"[TEST_SONG_ARTIST]",
-  mediaAlbumName:"[TEST_ALBUM_NAME]",
-  mediaAlbumArt:"null",
-  mediaPlayedSec:60,
-  mediaIsLive:false,
-  mediaLengthSec:200,
-  mediaProgress:30,
-}
+
 let drawWidth;
 
 function setup() {
