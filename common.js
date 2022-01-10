@@ -4,21 +4,26 @@
 //
 // Common ui elements and settings (Hopefully)
 
+//settigs related to appearance
+let visual = {
+  background:"Black",
+  text:"Black",
+}; 
 
-let visualSettings;//settigs related to appearance
-
-let hardwareSettings = {
+//settings related to io and hardware control (for whatever i use to allow for html+js to control RPi GPIO stuf)
+let hardware = {
   attachedDevices:[ ['id','name','state',['capibilities'],'type' ],
   [] ],
   hardwareName:'Raspberry Pi3',
   hardwareType:['pi','arm',],
-};//settings related to io and hardware control (for whatever i use to allow for html+js to control RPi GPIO stuf)
+};
 
-let secureSettings = {
+//settings related to security (mostly read only, many will only be editable w/ physical access for security reasons) or that could break remote access
+let secure = {
 	DeviceName:"[DEVICE_NAME]",
 	WifiNetwork:['ssid','type','password']//find a way to not store password in hardcoded plaintext 
 
-}//settings related to security (mostly read only, many will only be editable w/ physical access for security reasons) or that could break remote access
+}
 
 //let drawWidth;
 
@@ -48,8 +53,6 @@ class Gpio {
   }
 }
 
-
-
 class piface2 extends Gpio {
   constructor(name){
     super(name, 'test');
@@ -60,7 +63,29 @@ class piface2 extends Gpio {
   }
 }
 
-
+//common controls
+function drawButton(x,y,buttonWidth, buttonHeight, txt, accent, txtColor){
+  if(clickArea(x,y,buttonWidth,buttonHeight)){
+    if(mouseIsPressed){
+      fill(accent);
+      //return true;
+    }
+    else{fill(60);}
+  }
+  else{fill(40);}
+  stroke(accent)
+  strokeWeight(3)
+  rect(x,y,buttonWidth,buttonHeight)
+  noStroke;
+  textSize(buttonHeight/4)
+  fill(txtColor)
+  textSize(17)
+  text(txt,x+5,y+5,width-5,buttonHeight-5)
+  return false;
+}
+function clickArea(x,y,awidth,aheight){
+ return(mouseX>x && mouseX<x+awidth && mouseY>y && mouseY<y+aheight)
+}
 class Button {
   constructor(x,y,buttonWidth, buttonHeight, text, accent, norm, hover, txtcolor) {
     this.x = x;
@@ -176,7 +201,7 @@ class progress { //idk how well this will work yet
 
 // todo: sliders, radio buttons(ui element), tabs(might just use multiple html pages), always present status bar type thing, more consistant framework, RPI GPIO interaction via .SH or .py files
 
-//data stoage&retreval
+//data storage&retreval placeholder values
 //--battery/power
 let bat0 = {
   name:"RPi Battery",
@@ -289,6 +314,12 @@ let relayTable = [//id, pin, name, active
   [6,"GPIO20","relay 7",false],
   [7,"GPIO21","relay 8",false]
 ]
+
+//gpio pins
+let gpioPins = [//pin,name,type,active/state
+              [0,"gpio0","output",false],
+              [1,"gpio1","output",false],
+              [2,"gpio2","output",false]]
 //lights
 let light0 = {
   lightRelayId:0,
@@ -329,17 +360,18 @@ function help(){
   console.log("relayGet(number) | returns state of selected relay");
   console.log("gpioSet(number,state) | changes state of a gpio pin");
   console.log("gpioGet(number) | returns state of selected gpio pin");
-  console.log("analogSet(id,state) | changes value of an analog device/dac/adc");
+  console.log("analogSet(id,state,value) | changes value of an analog device/dac/adc");
   console.log("analogGet(id) | returns of of selected analog device/dac/adc");
-  console.log("lightSet(id,state,brightness) | changes value of a controllable light");
-  console.log("lightGet(id) | returns valuse(on,state,brightness) of of selected light");
   console.log("dataSet(id,type,state) | changes value of a digital vdevice");
   console.log("dataGet(id,protocall) | returns of of selected analog device");
   console.log("--- sensor ---");
   console.log("batteryStatus(id) | returns(charge, chargeState, usage, capacity,voltage)");
   console.log("--- internal control ---");
+  console.log("shutdown(time) | shutsdown device after specified amount of time");
   console.log("reboot(time) | reboots device after specified amount of time");
 }
+
+//device control
 
 function relaySet(number,state){
   relayTable[number][3]=state;
@@ -349,7 +381,7 @@ function relaySet(number,state){
 }
 
 function relayGet(number){
-  console.log("not yet implemented");
+  console.log("not yet tested");
   let state=relayTable[number][3]
   let name=relayTable[number][2]
   let location = name= relayTable[number][1]
@@ -359,7 +391,7 @@ function relayGet(number){
 
 
 function gpioSet(number,state){
-  
+  console.log("not yet implemented");
 }
 
 function gpioGet(number){
@@ -375,18 +407,6 @@ function analogGet(id){
   console.log("not yet implemented");
   let on=false
   let value=255
-  return(on,state,brightness)
-}
-
-function lightSet(id,state,value){
-  console.log("not yet implemented");
-}
-
-function lightGet(id){
-  console.log("not yet implemented");
-  let on=false
-  let state='normal'
-  let brightness=255
   return(on,state,brightness)
 }
 
@@ -412,4 +432,8 @@ function batteryStatus(id){
 
 function reboot(time){
   console.log("not yet implemented, please manually reboot");
+}
+
+function shutdown(time){
+  console.log("not yet implemented, please manually shutdown");
 }

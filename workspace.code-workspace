@@ -1,0 +1,19 @@
+{
+	"folders": [
+		{
+			"name": "datapacks",
+			"path": "c:\\Users\\DMessham\\AppData\\Roaming\\.minecraft\\saves\\origins2\\datapacks"
+		},
+		{
+			"name": "Dmessham.github.io",
+			"path": "..\\Dmessham.github.io"
+		},
+		{
+			"name": "CS30-Major-Project",
+			"path": "."
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "CS30-Major-Project"
+	}
+}
