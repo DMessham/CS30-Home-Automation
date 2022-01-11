@@ -25,6 +25,9 @@ let secure = {
 
 }
 
+let timeBase = 0//timer used for pacing user input
+let timeDelay = 700//min time between inputs
+
 //let drawWidth;
 
 //function setup() {
@@ -65,7 +68,7 @@ class piface2 extends Gpio {
 
 //common controls
 function drawButton(x,y,buttonWidth, buttonHeight, txt, accent, txtColor){
-  if(clickArea(x,y,buttonWidth,buttonHeight)){
+  if(mouseArea(x,y,buttonWidth,buttonHeight)){
     if(mouseIsPressed){
       fill(accent);
       //return true;
@@ -83,7 +86,7 @@ function drawButton(x,y,buttonWidth, buttonHeight, txt, accent, txtColor){
   text(txt,x+5,y+5,width-5,buttonHeight-5)
   return false;
 }
-function clickArea(x,y,awidth,aheight){
+function mouseArea(x,y,awidth,aheight){
  return(mouseX>x && mouseX<x+awidth && mouseY>y && mouseY<y+aheight)
 }
 class Button {
@@ -324,6 +327,13 @@ let gpioPins = [//pin,name,type,active/state
 let light0 = {
   lightRelayId:0,
   lightName:'porch light',
+  lightOn:false,
+  lightBrightControl:true,
+  lightBright:0.35,
+}
+let light1 = {
+  lightRelayId:1,
+  lightName:'cabin light',
   lightOn:false,
   lightBrightControl:true,
   lightBright:0.35,

@@ -21,7 +21,8 @@ function windowResized(){
 function draw() {
   background(20);
   testdraw()
-  drawStat(light0, 7,25,drawWidth)
+  drawStat(light0, 7,25,drawWidth);
+  drawStat(light1, 7,65,drawWidth)
 }
 
 function testdraw() {
@@ -35,13 +36,14 @@ function drawStat(light, x,y,wid){
   stroke("white");//brighnessbar bg
   fill('gray');
   rect(x+39,y+8,wid-(x*2)-43, 9);
+  circle(round(x+((wid-(x*2))*(light.lightBright))+39,2),y+12,18);//slider bg
   fill('green');//brightnessbar fill
   noStroke();
-  rect(x+41,y+9,((wid-(x*2)-44)*(light.lightBright)),7);
-  circle(((wid-(x*2)-44)*(light.lightBright)), y+15, 16)
+  rect(x+41,y+9,round((wid-(x*2))*(light.lightBright),2),7);
+  circle(round(x+((wid-(x*2))*(light.lightBright))+39,2),y+12,16);//slider grabber
 
   stroke('blue')
-  if(light.on)(fill("yellow"))
+  if(light.lightOn)(fill("yellow"))
   else(fill('gray'));
 
   rect(x,y-13,32,32)//stat icon&button placeholder
@@ -49,7 +51,24 @@ function drawStat(light, x,y,wid){
 
   textSize(16)//info
   stroke('gray')
-  text(light.lightName + ": on: " + light.lightOn + " (set to " + light.lightBright*100 + "% brightness)", x+38, y);
+  text(light.lightName + ": on: " + light.lightOn + " (set to " + round(light.lightBright*100,3) + "% brightness)", x+38, y);//text
+
+  if(mouseArea(x,y-13,32,32)){//toggle state
+    if(millis()-timeBase>=timeDelay && mouseIsPressed){
+       if(light.lightOn==false){light.lightOn=true}//set relay state to true if it is false
+       else(light.lightOn=false)//set it to false if it is anything else
+       timeBase = millis()//reset the delay for a button press
+       console.log(light.lightName + "," +light.lightOn+","+light.lightBright)
+     }
+  }
+  if(mouseArea(x+38,y+3,wid-(x*2)-43,20)){//slider control
+    if(millis()-timeBase>=timeDelay && mouseIsPressed){
+       //light.lightBright = round((((x)*2)+mouseX)/drawWidth,4)//calc new brightness value based off mouse pos
+       light.lightBright = round((mouseX/(wid-(x*2)))-0.030,3)
+       timeBase = millis()//reset the delay for a button press
+       console.log(light.lightName + "," +light.lightOn+","+light.lightBright)
+     }
+  }
 
   // drawButton(3,30*list+25,width-30, 25, txt, accent, 230);
   //   if(clickArea(3,30*list+25,width-30, 25)&&mouseIsPressed){//see if the mouse is in the area of a button and if it is being pressed

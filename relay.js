@@ -4,7 +4,7 @@
 //
 // Extra for Experts:
 // - describe what you did to take this project "above and beyond"
-let timeBase = 0
+
 
 function setup() {
   createCanvas(innerWidth-350, 300).parent("jscanvas");
@@ -33,8 +33,8 @@ function relayMenu(){
     if(relayTable[list][3]==true){accent="green"}//set button accent color according to state
     else{accent="darkCyan"}
     drawButton(3,30*list+25,width-30, 25, txt, accent, 230);
-    if(clickArea(3,30*list+25,width-30, 25)&&mouseIsPressed){//see if the mouse is in the area of a button and if it is being pressed
-      if(millis()-timeBase>=700){
+    if(mouseArea(3,30*list+25,width-30, 25)&&mouseIsPressed){//see if the mouse is in the area of a button and if it is being pressed
+      if(millis()-timeBase>=timeDelay){
         if(relayTable[list][3]==false){relayTable[list][3]=true}//set relay state to true if it is false
         else(relayTable[list][3]=false)//set it to false if it is anything else
         timeBase = millis()//reset the delay for a button press
