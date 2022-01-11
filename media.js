@@ -8,6 +8,14 @@
 
 let drawWidth;
 
+let albumArt
+let deviceIcon
+
+function preload(){
+  albumArt = loadImage('images/challenger.gif');//load albumArt Placeholder
+  deviceIcon = loadImage('images/spr_bigbob_0.png');//load source Placeholder
+}
+
 function setup() {
   drawWidth = windowWidth*0.8;
   createCanvas(drawWidth, 300).parent("jscanvas");
@@ -21,7 +29,7 @@ function windowResized(){
 function draw() {
   background(20);
   testdraw()
-  drawMediaStat(media0, 7,25,drawWidth,media0.mediaAlbumArt, 115, media0.sourceIcon)
+  drawMediaStat(media0, 7,25,drawWidth,albumArt, 115, deviceIcon)
   mediaControl(media0, 15, 150, drawWidth, drawWidth/6, 15)
 }
 
@@ -34,6 +42,7 @@ function testdraw() {
 function drawMediaStat(media, x,y,wid, art, artWidth, sourceIcon){
   fill('white');
   rect(x,y-20,30,30)//source icon placeholder
+  image(sourceIcon,x,y-20,30,30)
   textSize(17)//source info
   text(media.sourceName + " - " + media.sourceType + ": " + media.mediaStateString, x+33, y);
   textSize(27)//song title
@@ -50,6 +59,7 @@ function drawMediaStat(media, x,y,wid, art, artWidth, sourceIcon){
   rect(x+9+artWidth,y+83,(wid-(x*2)-4-artWidth)*(media.mediaProgress/100),7);
   fill(`red`)//album art placeholder
   rect(x, y+10, artWidth, artWidth)
+  image(art,x, y+10, artWidth, artWidth)
   textSize(17)//playeed time
   fill('green');
   text("played " + media.mediaPlayedSec , x+artWidth+10, y+113);
