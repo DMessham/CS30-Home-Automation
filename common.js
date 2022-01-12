@@ -79,7 +79,7 @@ function drawButton(x,y,buttonWidth, buttonHeight, txt, accent, txtColor){
   stroke(accent)
   strokeWeight(3)
   rect(x,y,buttonWidth,buttonHeight)
-  noStroke;
+  noStroke();
   textSize(buttonHeight/4)
   fill(txtColor)
   textSize(17)
@@ -88,41 +88,6 @@ function drawButton(x,y,buttonWidth, buttonHeight, txt, accent, txtColor){
 }
 function mouseArea(x,y,awidth,aheight){
  return(mouseX>x && mouseX<x+awidth && mouseY>y && mouseY<y+aheight)
-}
-class Button {
-  constructor(x,y,buttonWidth, buttonHeight, text, accent, norm, hover, txtcolor) {
-    this.x = x;
-    this.y = y;
-    this.width = buttonWidth;
-    this.height = buttonHeight;
-    this.normColor = norm
-    this.accentColor = accent
-    this.hoverColor = hover
-    this.text = text
-    this.textColor = txtcolor
-  }
-  display(){
-    if(this.isPointInButton(mouseX,mouseY)){
-      if(mouseIsPressed){
-        fill(this.accentColor);
-      }
-      else{fill(this.hoverColor);}
-    }
-    else{fill(this.normColor);}
-    stroke(this.accentColor)
-    strokeWeight(3)
-    rect(this.x,this.y,this.width,this.height)
-    noStroke;
-    textSize(this.height/4)
-    fill(this.textColor)
-    text(this.text,this.x+50,this.y+50,this.width-50,this.height-50)
-  }
-  isPointInButton(x,y){
-    return( x>this.x && x<this.x+this.width && y>this.y && y<this.y+this.height)
-  }
-  buttonClicked(){
-    return(this.isPointInButton(mouseX,mouseY)&&mouseIsPressed)
-  }
 }
 
 class Toggle {
@@ -347,8 +312,8 @@ let media0 = {
   sourceIcon:"none",
   mediaType:"audio",
   mediaCodec:"none",
-  mediaStateName:0,
-  mediaStateString:"[PLAYBACK_STATUS]",
+  mediaStateName:"pause",
+  mediaStateString:"Stopped",
   mediaTitle:"[TEST_SONG_TITLE]",
   mediaArtistName:"[TEST_SONG_ARTIST]",
   mediaAlbumName:"[TEST_ALBUM_NAME]",
@@ -357,6 +322,13 @@ let media0 = {
   mediaIsLive:false,
   mediaLengthSec:200,
   mediaProgress:30,
+}
+
+function mediaButton(icon,x,y,offset,size,space,bgColor,control){
+  fill(bgColor)//
+  drawButton(x + offset*size+(offset+1)*space, y+space,size, size, control, bgColor, 70)
+  image(icon,x + offset*size+(offset+1)*space, y+space, size, size)
+  return(mouseArea(x + offset*size+(offset+1)*space, y+space,size, size))
 }
 
 //
