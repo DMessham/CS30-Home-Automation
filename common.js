@@ -90,6 +90,26 @@ function mouseArea(x,y,awidth,aheight){
  return(mouseX>x && mouseX<x+awidth && mouseY>y && mouseY<y+aheight)
 }
 
+function mediaButton(icon,x,y,offset,size,space,bgColor,control){
+  fill(bgColor)//
+  drawButton(x + offset*size+(offset+1)*space, y+space,size, size, control, bgColor, 70)
+  image(icon,x + offset*size+(offset+1)*space, y+space, size, size)
+  return(mouseArea(x + offset*size+(offset+1)*space, y+space,size, size))
+}
+
+function progress(x,y,width,height,value,fillCol='green',bgCol='gray',txt='',borCol=bgCol,borThk=1){
+  strokeWeight(1);
+    stroke(borCol);//progressbar bg
+    fill(bgCol);
+    rect(x,y,width-(x*2), height);
+    fill(fillCol);//progressbar fill
+    noStroke();
+    rect(x+borThk,y+borThk,(width-(borThk)*2)*(value/100),height-(borThk*2));
+    fill(bgCol)
+    textSize(12)
+    text(txt,x+(width-(borThk)*2)*(value/100),y)
+}
+
 class Toggle {
   constructor(x,y,buttonWidth, buttonHeight, text, state, accent, norm, txtcolor) {
     this.x = x;
@@ -131,38 +151,6 @@ class Toggle {
   buttonClicked(){
     this.state!=this.state
     return(this.isPointInButton(mouseX,mouseY)&&mouseIsPressed)
-  }
-}
-
-class progress { //idk how well this will work yet
-  constructor(x,y,objWidth, objHeight, progress, fill, bg, text, txtcolor) {
-    this.x = x;
-    this.y = y;
-    this.width = objWidth;
-    this.height = objHeight;
-    this.bgColor = bg
-    this.edgeColor = 160
-    this.fillColor = fill
-    this.progress = progress
-    this.label = text
-    this.textColor = txtcolor
-
-  }
-  display(){
-    fill(this.bgColor);
-    stroke(this.edgeColor)
-    strokeWeight(3)
-    rect(this.x,this.y,this.width,this.height)
-    fill(this.fillColor)
-    rect(this.x,this.y,this.width*(0.01*progress),this.height)
-    noStroke;
-    textSize(this.height/4)
-    fill(this.textColor)
-    text(this.label,this.x+50,this.y+50,this.width-50,this.height-50)
-  }
-  update(progress){
-    this.progress = progress;
-    
   }
 }
 
@@ -324,12 +312,7 @@ let media0 = {
   mediaProgress:30,
 }
 
-function mediaButton(icon,x,y,offset,size,space,bgColor,control){
-  fill(bgColor)//
-  drawButton(x + offset*size+(offset+1)*space, y+space,size, size, control, bgColor, 70)
-  image(icon,x + offset*size+(offset+1)*space, y+space, size, size)
-  return(mouseArea(x + offset*size+(offset+1)*space, y+space,size, size))
-}
+
 
 //
 

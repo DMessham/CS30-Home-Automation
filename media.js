@@ -79,6 +79,8 @@ function drawMediaStat(media, x,y,wid, art, artWidth, sourceIcon){
     fill('green');//progressbar fill
     noStroke();
     rect(x+9+artWidth,y+73,(wid-(x*2)-4-artWidth)*(media.mediaProgress/100),7);
+
+    progress(x+7+artWidth,y+70,wid-(x*2)-artWidth-3,13,media.mediaProgress,'green','gray',txt='',bgCol,borThk=2)
     textSize(17)//playeed time
     fill('green');
     text("played " + media.mediaPlayedSec , x+artWidth+10, y+103);
