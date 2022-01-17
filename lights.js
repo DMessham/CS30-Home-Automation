@@ -36,11 +36,11 @@ function drawStat(light, x,y,wid){
   stroke("white");//brighnessbar bg
   fill('gray');
   rect(x+39,y+8,wid-(x*2)-43, 9);
-  circle(round(x+((wid-(x*2))*(light.lightBright))+39,2),y+12,18);//slider bg
+  circle(round(x+((wid-(x*2))*(light.lightBright))+27,2),y+12,18);//slider bg
   fill('green');//brightnessbar fill
   noStroke();
-  rect(x+41,y+9,round((wid-(x*2))*(light.lightBright),2),7);
-  circle(round(x+((wid-(x*2))*(light.lightBright))+39,2),y+12,16);//slider grabber
+  rect(x+41,y+9,round((wid-(x*2))*(light.lightBright)-7,2),7);
+  circle(round(x+((wid-(x*2))*(light.lightBright))+27,2),y+12,16);//slider grabber
 
   stroke('blue')
   if(light.lightOn)(fill("yellow"))
@@ -64,7 +64,7 @@ function drawStat(light, x,y,wid){
   if(mouseArea(x+38,y+3,wid-(x*2)-43,20)){//slider control
     if(millis()-timeBase>=timeDelay && mouseIsPressed){
        //light.lightBright = round((((x)*2)+mouseX)/drawWidth,4)//calc new brightness value based off mouse pos
-       light.lightBright = round((mouseX/(wid-(x*2)))-0.030,3)
+       light.lightBright = round((mouseX/(wid-(x*2)))-0.040,3)
        timeBase = millis()//reset the delay for a button press
        console.log(light.lightName + "," +light.lightOn+","+light.lightBright)
      }
