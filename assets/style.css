@@ -436,10 +436,10 @@ nav ul li a:hover {
 	background-clip: border-box;
   }
 img {
-	border-radius: 5px;
+	border-radius: 7px;
 	border-width: 1px;
 	border-style: solid;
-	border-color: rgba(179, 179, 179, 0.568);
+	border-color: rgba(179, 179, 179, 0.168);
 }
 iframe {
 	border-radius: 5px;

@@ -69,16 +69,25 @@ class piface2 extends Gpio {
 //common controls
 function drawButton(x,y,buttonWidth, buttonHeight, txt, accent, txtColor){
   if(mouseArea(x,y,buttonWidth,buttonHeight)){
+    stroke(accent)
     if(mouseIsPressed){
       fill(accent);
+      stroke(txtColor)
+      strokeWeight(2.5)
       //return true;
     }
-    else{fill(60);}
+    else{
+      fill(70)
+      strokeWeight(2)
+      stroke(accent);
+    }
   }
-  else{fill(40);}
-  stroke(accent)
-  strokeWeight(3)
-  rect(x,y,buttonWidth,buttonHeight)
+  else{fill(40)
+    stroke(accent)
+    strokeWeight(1.5);}
+  
+  
+  rect(x,y,buttonWidth,buttonHeight,5)
   noStroke();
   textSize(buttonHeight/4)
   fill(txtColor)
@@ -101,10 +110,10 @@ function progress(x,y,width,height,value,fillCol='green',bgCol='gray',txt='',bor
   strokeWeight(1);
     stroke(borCol);//progressbar bg
     fill(bgCol);
-    rect(x,y,width-(x*2), height);
+    rect(x,y,width, height,5);
     fill(fillCol);//progressbar fill
     noStroke();
-    rect(x+borThk,y+borThk,(width-(borThk)*2)*(value/100),height-(borThk*2));
+    rect(x+borThk,y+borThk,(width-(borThk)*2)*(value/100),height-(borThk*2),5);
     fill(bgCol)
     textSize(12)
     text(txt,x+(width-(borThk)*2)*(value/100),y)

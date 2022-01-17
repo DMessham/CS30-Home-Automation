@@ -59,27 +59,28 @@ function testdraw() {
 }
 
 function drawMediaStat(media, x,y,wid, art, artWidth, sourceIcon){
+  stroke("green")
+  strokeWeight(2)
   fill('white');
-  //rect(x,y-20,30,30)//source icon placeholder
-  image(sourceIcon,x,y-20,30,30)
+  rect(x,y-20,30,30,5)//source icon placeholder
+  image(sourceIcon,x,y-20,30,30,5)
+  noStroke()
   textSize(17)//source info
   text(media.sourceName + " - " + media.sourceType + ": " + media.mediaStateString, x+33, y);
   textSize(27)//song title
   text(media.mediaTitle, x+artWidth+7, y+33);
   textSize(17)//artist and album
   text(media.mediaArtistName + " - " + media.mediaAlbumName, x+artWidth+7, y+60);
-  fill(`red`)//album art placeholder
-  rect(x, y+10, artWidth, artWidth)
+  fill(65)//album art placeholder
+  stroke("green")
+  rect(x, y+10, artWidth, artWidth,7)
   image(art,x, y+10, artWidth, artWidth)
   if(!media0.Live){
     strokeWeight(1);
     stroke("white");//progressbar bg
     fill('gray');
-    rect(x+7+artWidth,y+70,wid-(x*2)-artWidth-3, 13);
+    //rect(x+7+artWidth,y+70,wid-(x*2)-artWidth-3, 13,5);
     fill('green');//progressbar fill
-    noStroke();
-    rect(x+9+artWidth,y+73,(wid-(x*2)-4-artWidth)*(media.mediaProgress/100),7);
-
     progress(x+7+artWidth,y+70,wid-(x*2)-artWidth-3,13,media.mediaProgress,'green','gray','test','gray',2)
     textSize(17)//playeed time
     fill('green');

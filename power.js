@@ -46,10 +46,10 @@ function drawBattStat(batt, x,y,wid){
   strokeWeight(1);
   stroke("white");
   fill('gray');
-  rect(x,y+13,wid-(x*2), 13);
+  rect(x,y+13,wid-(x*2), 13,5);
   fill('green');
   noStroke();
-  rect(x+1,y+16,(wid-(x*2)-1)*(bat0.percent/100),7);
+  rect(x+1,y+16,(wid-(x*2)-1)*(bat0.percent/100),7,5);
 }
 
 function drawFuelStat(fuel, x,y,wid){
@@ -59,10 +59,10 @@ function drawFuelStat(fuel, x,y,wid){
   strokeWeight(1);
   stroke("white");
   fill('gray');
-  rect(x,y+13,wid-(x*2), 13);
+  rect(x,y+13,wid-(x*2), 13,5);
   fill('green');
   noStroke();
-  rect(x+1,y+16,(wid-(x*2)-1)*(bat0.percent/100),7);
+  rect(x+1,y+16,(wid-(x*2)-1)*(bat0.percent/100),7,5);
 }
 
 function drawPowerStat(Source, x,y,wid){
@@ -78,8 +78,8 @@ function drawPowerStat(Source, x,y,wid){
   strokeWeight(1);
   stroke("white");
   fill('gray');
-  rect(x,y+13,wid-(x*2), 13);
+  rect(x,y+13,wid-(x*2), 13,4,5);
   fill('green');
   noStroke();
-  rect(x+1,y+16,(wid-(x*2)-1)*(bat0.percent/100),7);
+  rect(x+1,y+16,(wid-(x*2)-1)*(bat0.percent/100),7,5);
 }

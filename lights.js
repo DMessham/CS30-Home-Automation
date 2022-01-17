@@ -28,25 +28,25 @@ function draw() {
 function testdraw() {
   noStroke()
   fill('gray').
-  rect(0,0,width,4)
+  rect(0,0,width,4,5)
 }
 
 function drawStat(light, x,y,wid){
   strokeWeight(1);
   stroke("white");//brighnessbar bg
   fill('gray');
-  rect(x+39,y+8,wid-(x*2)-43, 9);
+  rect(x+39,y+8,wid-(x*2)-43, 9,5);
   circle(round(x+((wid-(x*2))*(light.lightBright))+27,2),y+12,18);//slider bg
   fill('green');//brightnessbar fill
   noStroke();
-  rect(x+41,y+9,round((wid-(x*2))*(light.lightBright)-7,2),7);
+  rect(x+41,y+9,round((wid-(x*2))*(light.lightBright)-7,2),7,5);
   circle(round(x+((wid-(x*2))*(light.lightBright))+27,2),y+12,16);//slider grabber
 
   stroke('blue')
   if(light.lightOn)(fill("yellow"))
   else(fill('gray'));
 
-  rect(x,y-13,32,32)//stat icon&button placeholder
+  rect(x,y-13,32,32,5)//stat icon&button placeholder
   fill('white')
 
   textSize(16)//info
