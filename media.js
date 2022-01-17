@@ -35,13 +35,13 @@ function preload(){
 
 function setup() {
   drawWidth = windowWidth*0.8;
-  createCanvas(drawWidth, 300).parent("jscanvas");
+  createCanvas(drawWidth, 280).parent("jscanvas");
   artSize = drawWidth/3.7
 }
 
 function windowResized(){
   drawWidth = windowWidth*0.8;
-  createCanvas(drawWidth, 300).parent("jscanvas");
+  createCanvas(drawWidth, 280).parent("jscanvas");
   artSize = drawWidth/3.7
 }
 
@@ -80,7 +80,7 @@ function drawMediaStat(media, x,y,wid, art, artWidth, sourceIcon){
     noStroke();
     rect(x+9+artWidth,y+73,(wid-(x*2)-4-artWidth)*(media.mediaProgress/100),7);
 
-    progress(x+7+artWidth,y+70,wid-(x*2)-artWidth-3,13,media.mediaProgress,'green','gray',txt='',bgCol,borThk=2)
+    progress(x+7+artWidth,y+70,wid-(x*2)-artWidth-3,13,media.mediaProgress,'green','gray','test','gray',2)
     textSize(17)//playeed time
     fill('green');
     text("played " + media.mediaPlayedSec , x+artWidth+10, y+103);
