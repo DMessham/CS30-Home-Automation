@@ -105,6 +105,22 @@ function mediaButton(icon,x,y,offset,size,space,bgColor,control){
   image(icon,x + offset*size+(offset+1)*space, y+space, size, size)
   return(mouseArea(x + offset*size+(offset+1)*space, y+space,size, size))
 }
+function mediaOpt(source){}
+
+function mediaBack(source){}
+
+function mediaPlayPause(source){
+  if(source.mediaState == 'pause'){
+    source.mediaState = 'play';
+  }
+  else if(source.mediaState == 'play'){
+    source.mediaState = 'pause';
+  }
+
+}
+
+function mediaNext(source){}
+function mediaOpen(source){}
 
 function progress(x,y,width,height,value,fillCol='green',bgCol='gray',txt='',borCol=bgCol,borThk=1){
   strokeWeight(1);
@@ -309,7 +325,7 @@ let media0 = {
   sourceIcon:"none",
   mediaType:"audio",
   mediaCodec:"none",
-  mediaStateName:"pause",
+  mediaState:"pause",
   mediaStateString:"Stopped",
   mediaTitle:"[TEST_SONG_TITLE]",
   mediaArtistName:"[TEST_SONG_ARTIST]",

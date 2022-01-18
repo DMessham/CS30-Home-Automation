@@ -20,6 +20,8 @@ let optionsIcon
 let openIcon
 
 
+
+
 function preload(){
   albumArt = loadImage('images/challenger.gif');//load albumArt Placeholder
   deviceIcon = loadImage('images/spr_bigbob_0.png');//load source Placeholder
@@ -48,7 +50,9 @@ function windowResized(){
 function draw() {
   background(20);
   testdraw()
+  mediaLogic(media0)
   drawMediaStat(media0, 7,25,drawWidth,albumArt, artSize, deviceIcon)
+  mediaControlBG(media0, artSize, 125, drawWidth-artSize, (drawWidth-artSize)/6, 15)
   mediaControl(media0, artSize, 125, drawWidth-artSize, (drawWidth-artSize)/6, 15)
 }
 
@@ -58,12 +62,12 @@ function testdraw() {
   rect(0,0,width,4)
 }
 
-function drawMediaStat(media, x,y,wid, art, artWidth, sourceIcon){
+function drawMediaStat(media, x, y, wid, art, artWidth, sourceIcon){
   stroke("green")
   strokeWeight(2)
   fill('white');
   rect(x,y-20,30,30,5)//source icon placeholder
-  image(sourceIcon,x,y-20,30,30,5)
+  image(sourceIcon,x,y-20,30,30)
   noStroke()
   textSize(17)//source info
   text(media.sourceName + " - " + media.sourceType + ": " + media.mediaStateString, x+33, y);
@@ -88,12 +92,12 @@ function drawMediaStat(media, x,y,wid, art, artWidth, sourceIcon){
     fill('gray');//time remaining
     text("left: " + media.mediaLengthSec, wid-70, y+103);
   }
+  
 }
 
-function mediaControl(source, x, y, wid, size, space){
+function mediaControlBG(source, x, y, wid, size, space){
   let playbackStateIcon = stopIcon
-  if(source.mediaStateName = "play"){let playbackStateIcon = pausedIcon}
-  else if(source.mediaStateName = 'paused'){let playbackStateIcon = playingIcon}
+  
 
   mediaButton(optionsIcon,x,y,0,size,space,'cyan',"options")
 
@@ -101,12 +105,58 @@ function mediaControl(source, x, y, wid, size, space){
 
   mediaButton(playbackStateIcon,x,y,2,size,space,'purple',source.mediaStateString)
 
-  mediaButton(nextIcon,x,y,3,size,space,'orange',"pause")
+  mediaButton(nextIcon,x,y,3,size,space,'orange',"next")
 
   mediaButton(openIcon,x,y,4,size,space,'blue',"open")
 
   
-
-  //ligic for 
 }
 
+function mediaControl(source,x,y,wid,size,space){
+  //logic for buttons
+  if(mouseIsPressed&&(millis()-timeBase>=200)){
+    
+    if(mouseArea(x+(1)*space,y,size,y+space)){//opt
+      console.log("opt clicked")
+      mediaOpt(source)
+    }
+
+    else if(mouseArea(x+1*size+(2)*space,y,size,y+space)){//back
+      console.log("back clicked")
+      mediaBack(source)
+    }
+
+    else if(mouseArea(x+2*size+(3)*space,y,size,y+space)){//pause
+      console.log("play/pause clicked - "+source.mediaState)
+      mediaPlayPause(source)
+      
+    }
+
+    else if(mouseArea(x+3*size+(4)*space,y,size,y+space)){//next
+      console.log("next clicked")
+      mediaNext(source)
+    }
+
+    else if(mouseArea(x+4*size+(5)*space,y,size,y+space)){//open
+      console.log("open clicked")
+      mediaOpen(source)
+    }
+    timeBase = millis()//reset the delay for a button press
+  }
+}
+function mediaLogic(source){
+  if(source.mediaState == 'play'){
+    let playbackStateIcon = pausedIcon
+    source.mediaStateString="Playing"
+  }
+  else if(source.mediaState == 'pause'){
+    let playbackStateIcon = playingIcon
+    source.mediaStateString="Paused"
+  }
+  else if(source.mediaState == 'error'){
+    source.mediaStateString="ERROR"
+  }
+  else if(source.mediaState == 'stop'){
+    source.mediaStateString="Stopped"
+  }
+}
