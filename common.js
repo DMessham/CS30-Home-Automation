@@ -5,7 +5,7 @@
 // Common ui elements and settings (Hopefully)
 
 //settigs related to appearance
-let visual = {
+let appearance = {
   background:"Black",
   text:"Black",
 }; 
@@ -25,8 +25,22 @@ let secure = {
 
 }
 
+let visualSettings = {}
+
+let visualSettingsList = [//Used for the gui settings page, follows format of [name,type(0toggle,1number,2int,3text,4dropdown)value,locked,Options(offstate/onstate,min/max,variables)]
+  ["testToggle","toggle",false,false,false,true],
+  ["testNum","number",3,false,0,100],
+  ["testInt","integer",3.5,false,0,100],
+  ["testText","textEntry","",false,],
+  ["testDropdown","dropdownMenu",[["option1Var","option1Text"],["option1Var","option1Text"]],false,]
+
+]
+
 let timeBase = 0//timer used for pacing user input
 let timeDelay = 700//min time between inputs
+
+//drawWidth = windowWidth*0.8;
+let drawWidth = 768;//canvas width
 
 //let drawWidth;
 
@@ -124,7 +138,7 @@ function mediaOpen(source){}
 
 function progress(x,y,width,height,value,fillCol='green',bgCol='gray',txt='',borCol=bgCol,borThk=1){
   strokeWeight(1);
-    stroke(borCol);//progressbar bg
+    //stroke(borCol);//progressbar bg
     fill(bgCol);
     rect(x,y,width, height,5);
     fill(fillCol);//progressbar fill

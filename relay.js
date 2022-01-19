@@ -7,11 +7,12 @@
 
 
 function setup() {
-  createCanvas(innerWidth-350, 300).parent("jscanvas");
+  //createCanvas(innerWidth-350, 300).parent("jscanvas");
+  createCanvas(drawWidth, 280).parent("jscanvas");
 }
 
 function windowResized(){
-  createCanvas(innerWidth-350, 300).parent("jscanvas");
+  //createCanvas(outerWidth*0.8, 300).parent("jscanvas");
 }
 
 function draw() {

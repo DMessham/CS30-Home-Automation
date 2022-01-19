@@ -6,7 +6,7 @@
 // - describe what you did to take this project "above and beyond"
 
 
-let drawWidth;
+
 
 let albumArt
 let deviceIcon;
@@ -36,7 +36,7 @@ function preload(){
 }
 
 function setup() {
-  drawWidth = windowWidth*0.8;
+  //drawWidth = windowWidth*0.8;
   createCanvas(drawWidth, 280).parent("jscanvas");
   artSize = drawWidth/3.7
 }
@@ -81,10 +81,6 @@ function drawMediaStat(media, x, y, wid, art, artWidth, sourceIcon){
   image(art,x, y+10, artWidth, artWidth)
   if(!media0.Live){
     strokeWeight(1);
-    stroke("white");//progressbar bg
-    fill('gray');
-    //rect(x+7+artWidth,y+70,wid-(x*2)-artWidth-3, 13,5);
-    fill('green');//progressbar fill
     progress(x+7+artWidth,y+70,wid-(x*2)-artWidth-3,13,media.mediaProgress,'green','gray','test','gray',2)
     textSize(17)//playeed time
     fill('green');
@@ -97,7 +93,20 @@ function drawMediaStat(media, x, y, wid, art, artWidth, sourceIcon){
 
 function mediaControlBG(source, x, y, wid, size, space){
   let playbackStateIcon = stopIcon
-  
+  if(source.mediaState == 'play'){
+    playbackStateIcon = playingIcon
+    source.mediaStateString="Playing"
+  }
+  else if(source.mediaState == 'pause'){
+    playbackStateIcon = pausedIcon
+    source.mediaStateString="Paused"
+  }
+  else if(source.mediaState == 'error'){
+    source.mediaStateString="ERROR"
+  }
+  else if(source.mediaState == 'stop'){
+    source.mediaStateString="Stopped"
+  }
 
   mediaButton(optionsIcon,x,y,0,size,space,'cyan',"options")
 
@@ -145,18 +154,5 @@ function mediaControl(source,x,y,wid,size,space){
   }
 }
 function mediaLogic(source){
-  if(source.mediaState == 'play'){
-    let playbackStateIcon = pausedIcon
-    source.mediaStateString="Playing"
-  }
-  else if(source.mediaState == 'pause'){
-    let playbackStateIcon = playingIcon
-    source.mediaStateString="Paused"
-  }
-  else if(source.mediaState == 'error'){
-    source.mediaStateString="ERROR"
-  }
-  else if(source.mediaState == 'stop'){
-    source.mediaStateString="Stopped"
-  }
+  
 }

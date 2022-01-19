@@ -8,12 +8,10 @@
 
 
 function setup() {
-  drawWidth = windowWidth*0.8;
   createCanvas(drawWidth, 300).parent("jscanvas");
 }
 
 function windowResized(){
-  drawWidth = windowWidth*0.8;
   createCanvas(drawWidth, 300).parent("jscanvas");
 }
 

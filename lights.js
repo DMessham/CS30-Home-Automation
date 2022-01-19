@@ -6,15 +6,12 @@
 // - describe what you did to take this project "above and beyond"
 
 
-let drawWidth;
-
 function setup() {
-  drawWidth = windowWidth*0.8;
   createCanvas(drawWidth, 300).parent("jscanvas");
 }
 
 function windowResized(){
-  drawWidth = windowWidth*0.8;
+  //drawWidth = windowWidth*0.8;
   createCanvas(drawWidth, 300).parent("jscanvas");
 }
 
