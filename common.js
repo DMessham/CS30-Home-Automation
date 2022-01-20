@@ -28,11 +28,14 @@ let secure = {
 let visualSettings = {}
 
 let visualSettingsList = [//Used for the gui settings page, follows format of [name,type(0toggle,1number,2int,3text,4dropdown)value,locked,Options(offstate/onstate,min/max,variables)]
-  ["testToggle","toggle",false,false,false,true],
-  ["testNum","number",3,false,0,100],
-  ["testInt","integer",3.5,false,0,100],
-  ["testText","textEntry","",false,],
-  ["testDropdown","dropdownMenu",[["option1Var","option1Text"],["option1Var","option1Text"]],false,]
+  ["testToggle","toggle",false,,false,true],
+  ["testNum","number",3,0,100],
+  ["testInt","numSlider",3.5,0,100],
+  ["testText","textEntry","",],
+  ["testDropdown","dropdownMenu",[["option1Var","option1Text"],["option1Var","option1Text"]],],
+  ["testProgress","progress",3.5,0,100],
+  ["testLoading","loading",3.5,0,100],
+  ["testToggle+Slider","toggleSlide",3.5,false,0,100],
 
 ]
 
@@ -41,6 +44,10 @@ let timeDelay = 700//min time between inputs
 
 //drawWidth = windowWidth*0.8;
 let drawWidth = 768;//canvas width
+
+function animationLoopPercent(time){
+  return( (millis()%(time*1000))/(time*1000) )
+}
 
 //let drawWidth;
 
