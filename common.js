@@ -43,11 +43,38 @@ let visualSettingsList = [//Used for the gui settings page, follows format of [n
 let timeBase = 0//timer used for pacing user input
 let timeDelay = 700//min time between inputs
 
+let render
+let canvasDiv
+
+function setup(){
+canvasDiv = document.getElementById('jscanvas');
+let width = canvasDiv.offsetWidth;
+let height = canvasDiv.offsetHeight;
+let render = createCanvas(width-5, 320).parent("jscanvas");
+render.style('margin', '-15px');
+}
+
+function windowResized() {
+  let width = canvasDiv.offsetWidth;
+  let height = canvasDiv.offsetHeight;
+  resizeCanvas(width-5, 320);
+}
+
+function labelDraw(name) {
+  fill('gray')
+  rect(0,29,width,2)
+  fill('lightgray')
+  textSize(25)
+  textStyle(ITALIC)
+  text(name,10,3, width-7, 32)
+  textStyle(NORMAL)
+}
+
 //drawWidth = windowWidth*0.8;
 let drawWidth = 768;//canvas width
 
 function animationLoopPercent(time){
-  return( (millis()%(time*1000))/(time*1000) )
+  return( (millis())%time/time)
 }
 
 //let drawWidth;
@@ -164,8 +191,8 @@ function ListEntry(x,y,itemWidth,itemHeight,listTable,itemID,visualPos,spacing){
 		let txt = listTable[itemID][0]
 		if(listTable[itemID][2]==true){accent="green"}//set button accent color according to state
     	else{accent="darkCyan"}
-		drawButton(x,y*visualPos+spacing,itemWidth, itemHeight, txt, accent, 230);
-	  	if(mouseArea(x,y*visualPos+spacing,itemWidth, itemHeight)&&mouseIsPressed){//see if the mouse is in the area of a button and if it is being pressed
+		drawButton(x,y+itemHeight*(visualPos+spacing),itemWidth, itemHeight, txt, accent, 230);
+	  	if(mouseArea(x,y+((itemHeight+2*spacing)*visualPos+spacing),itemWidth, itemHeight)&&mouseIsPressed){//see if the mouse is in the area of a button and if it is being pressed
 			if(millis()-timeBase>=timeDelay){
 				if(listTable[itemID][2]==false){listTable[itemID][2]=true}//set relay state to true if it is false
 		 		else(listTable[itemID][2]=false)//set it to false if it is anything else
@@ -177,20 +204,20 @@ function ListEntry(x,y,itemWidth,itemHeight,listTable,itemID,visualPos,spacing){
 	if(type=="number"){
 		let txt = listTable[itemID][0] +":"+listTable[itemID][2]
 		//the display for the label and icon
-		drawButton(x,y*visualPos+spacing, itemWidth-2*(itemHeight+spacing), itemHeight, txt, "cyan", 230);
+		drawButton(x,y+((itemHeight+2*spacing)*visualPos+spacing), itemWidth-2*(itemHeight+spacing), itemHeight, txt, "cyan", 230);
 		//plus button
-		drawButton(x+itemWidth-(itemHeight),y*visualPos+spacing,itemHeight, itemHeight, "+", "green", 230);
-		if(mouseArea(x+itemWidth-(itemHeight),y*visualPos+spacing,itemHeight, itemHeight)&&mouseIsPressed){//see if the mouse is in the area of a button and if it is being pressed
-			if(millis()-timeBase>=timeDelay){
+		drawButton(x+itemWidth-(itemHeight),y+((itemHeight+2*spacing)*visualPos+spacing),itemHeight, itemHeight, "+", "green", 230);
+		if(mouseArea(x+itemWidth-(itemHeight),y+((itemHeight+2*spacing)*visualPos+spacing),itemHeight, itemHeight)&&mouseIsPressed){//see if the mouse is in the area of a button and if it is being pressed
+			if(millis()-timeBase>=550){
 				if(listTable[itemID][2]<listTable[itemID][4]){listTable[itemID][2]++}//set relay state to true if it is false
 		  		timeBase = millis()//reset the delay for a button press
 		  		console.log(txt + "(num+):" +visualSettingsList[itemID][2])
 			}
 		}
 		//minus
-		drawButton(x+(itemWidth-spacing-2*itemHeight),y*visualPos+spacing,itemHeight, itemHeight, "-", "red", 230);
-		if(mouseArea(x+(itemWidth-spacing-2*itemHeight),y*visualPos+spacing,itemHeight, itemHeight)&&mouseIsPressed){//see if the mouse is in the area of a button and if it is being pressed
-			if(millis()-timeBase>=timeDelay){
+		drawButton(x+(itemWidth-spacing-2*itemHeight),y+((itemHeight+2*spacing)*visualPos+spacing),itemHeight, itemHeight, "-", "red", 230);
+		if(mouseArea(x+(itemWidth-spacing-2*itemHeight),y+((itemHeight+2*spacing)*visualPos+spacing),itemHeight, itemHeight)&&mouseIsPressed){//see if the mouse is in the area of a button and if it is being pressed
+			if(millis()-timeBase>=550){
 				if(listTable[itemID][2]>listTable[itemID][3]){listTable[itemID][2]--}//set relay state to true if it is false
 		  		timeBase = millis()//reset the delay for a button press
 		  		console.log(txt + "(num-):" +visualSettingsList[itemID][2])
@@ -203,21 +230,21 @@ function ListEntry(x,y,itemWidth,itemHeight,listTable,itemID,visualPos,spacing){
 		fill(60)
       	strokeWeight(2)
       	stroke(accent);
-		rect(x,y*visualPos+spacing, itemWidth-0*(itemHeight+spacing), itemHeight,5)
+		rect(x,y+((itemHeight+2*spacing)*visualPos+spacing), itemWidth-0*(itemHeight+spacing), itemHeight,5)
 		//fill
 		stroke("darkCyan");
 		fill(accent)
-		rect(x,y*visualPos+spacing, (itemWidth-0*(itemHeight+spacing))*(listTable[itemID][2]/100), itemHeight,5)
+		rect(x,y+((itemHeight+2*spacing)*visualPos+spacing), (itemWidth-0*(itemHeight+spacing))*(listTable[itemID][2]/100), itemHeight,5)
 		//text
 		noStroke();
 		fill('white')
 		textSize(17)
-		text(listTable[itemID][0],x+5,(y*visualPos+spacing)+5,width-5,itemHeight-5)
+		text(listTable[itemID][0],x+5,(y+((itemHeight+2*spacing)*visualPos+spacing))+5,width-5,itemHeight-5)
 		textAlign(RIGHT)
-		text(listTable[itemID][2],x+itemWidth-35,y*visualPos+2.5*spacing,itemHeight+10, itemHeight-5)
+		text(listTable[itemID][2],x+itemWidth-35,y+((itemHeight+2*spacing)*visualPos+spacing)*visualPos+2.5*spacing,itemHeight+10, itemHeight-5)
 		textAlign(LEFT)
 
-		if(mouseArea(x,y*visualPos+spacing,itemWidth, itemHeight)&&mouseIsPressed){
+		if(mouseArea(x,y+((itemHeight+2*spacing)*visualPos+spacing),itemWidth, itemHeight)&&mouseIsPressed){
 			let newval = round((mouseX-x)/itemWidth*100,1)
 			listTable[itemID][2] = newval
 			console.log(listTable[itemID][0]+" is now set to "+listTable[itemID][2])
@@ -225,8 +252,8 @@ function ListEntry(x,y,itemWidth,itemHeight,listTable,itemID,visualPos,spacing){
 	}
 	else if(type=="textEntry"){
 		let txt = listTable[itemID][0] +":"+listTable[itemID][2]
-		drawButton(x,y*visualPos+spacing, itemWidth, itemHeight, txt, "cyan", 230);
-		if(mouseArea(x,y*visualPos+spacing, itemWidth, itemHeight)&&mouseIsPressed){//see if the mouse is in the area of a button and if it is being pressed
+		drawButton(x,y+((itemHeight+2*spacing)*visualPos+spacing), itemWidth, itemHeight, txt, "cyan", 230);
+		if(mouseArea(x,y+((itemHeight+2*spacing)*visualPos+spacing), itemWidth, itemHeight)&&mouseIsPressed){//see if the mouse is in the area of a button and if it is being pressed
 			if(millis()-timeBase>=timeDelay){
 				if(listTable[itemID][2]<listTable[itemID][4]){listTable[itemID][2]++}//set relay state to true if it is false
 		  		timeBase = millis()//reset the delay for a button press
@@ -237,8 +264,8 @@ function ListEntry(x,y,itemWidth,itemHeight,listTable,itemID,visualPos,spacing){
 	else if(type=="dropdownMenu"){
 		let txt = listTable[itemID][0] +":"+listTable[itemID][2]
 		//the display for the label
-		drawButton(x,y*visualPos+spacing, itemWidth-1*(itemHeight+spacing), itemHeight, txt, "cyan", 230);
-		if(mouseArea(x,y*visualPos+spacing, itemWidth-1*(itemHeight+spacing), itemHeight)&&mouseIsPressed){//see if the mouse is in the area of a button and if it is being pressed
+		drawButton(x,y+((itemHeight+2*spacing)*visualPos+spacing), itemWidth-1*(itemHeight+spacing), itemHeight, txt, "cyan", 230);
+		if(mouseArea(x,y+((itemHeight+2*spacing)*visualPos+spacing), itemWidth-1*(itemHeight+spacing), itemHeight)&&mouseIsPressed){//see if the mouse is in the area of a button and if it is being pressed
 			if(millis()-timeBase>=timeDelay){
 				if(listTable[itemID][2]<listTable[itemID][4]){listTable[itemID][2]++}//set relay state to true if it is false
 		  		timeBase = millis()//reset the delay for a button press
@@ -246,8 +273,8 @@ function ListEntry(x,y,itemWidth,itemHeight,listTable,itemID,visualPos,spacing){
 			}
 		}
 		//plus button
-		drawButton(x+itemWidth-(itemHeight),y*visualPos+spacing,itemHeight, itemHeight, "V", "green", 230);
-		if(mouseArea(x+itemWidth-(itemHeight),y*visualPos+spacing,itemHeight, itemHeight)&&mouseIsPressed){//see if the mouse is in the area of a button and if it is being pressed
+		drawButton(x+itemWidth-(itemHeight),y+((itemHeight+2*spacing)*visualPos+spacing),itemHeight, itemHeight, "V", "green", 230);
+		if(mouseArea(x+itemWidth-(itemHeight),y+((itemHeight+2*spacing)*visualPos+spacing),itemHeight, itemHeight)&&mouseIsPressed){//see if the mouse is in the area of a button and if it is being pressed
 			if(millis()-timeBase>=timeDelay){
 				if(listTable[itemID][2]<listTable[itemID][4]){listTable[itemID][2]++}//set relay state to true if it is false
 		  		timeBase = millis()//reset the delay for a button press
@@ -261,21 +288,21 @@ function ListEntry(x,y,itemWidth,itemHeight,listTable,itemID,visualPos,spacing){
 		fill(60)
       	strokeWeight(2)
       	stroke(accent);
-		rect(x,y*visualPos+spacing, itemWidth-0*(itemHeight+spacing), itemHeight,5)
+		rect(x,y+((itemHeight+2*spacing)*visualPos+spacing), itemWidth-0*(itemHeight+spacing), itemHeight,5)
 		//fill
-		stroke("darkCyan");
+		stroke(accent);
 		fill(accent)
-		rect(x,y*visualPos+spacing, (itemWidth-0*(itemHeight+spacing))*(listTable[itemID][2]/100), itemHeight,5)
+		rect(x,y+((itemHeight+2*spacing)*visualPos+spacing), (itemWidth-0*(itemHeight+spacing))*(listTable[itemID][2]/100), itemHeight,5)
 		//text
 		noStroke();
 		fill('white')
 		textSize(17)
-		text(listTable[itemID][0],x+5,(y*visualPos+spacing)+5,width-5,itemHeight-5)
+		text(listTable[itemID][0],x+5,(y+((itemHeight+2*spacing)*visualPos+spacing))+5,width-5,itemHeight-5)
 		textAlign(RIGHT)
-		text(listTable[itemID][2]+"%",x+itemWidth-35,y*visualPos+2.5*spacing,itemHeight+10, itemHeight-5)
+		text(listTable[itemID][2]+"%",x+itemWidth-35,(y+((itemHeight+2*spacing)*visualPos+spacing))+5,itemHeight+10, itemHeight-5)
 		textAlign(LEFT)
 
-		if(mouseArea(x,y*visualPos+spacing,itemWidth, itemHeight)&&mouseIsPressed){
+		if(mouseArea(x,y+((itemHeight+2*spacing)*visualPos+spacing),itemWidth, itemHeight)&&mouseIsPressed){
 			let newval = round((mouseX-x)/itemWidth*100,1)
 			listTable[itemID][2] = newval
 			console.log(listTable[itemID][0]+" is now set to "+listTable[itemID][2])
@@ -285,39 +312,41 @@ function ListEntry(x,y,itemWidth,itemHeight,listTable,itemID,visualPos,spacing){
 		let accent="green"
 		//bg
 		fill(60)
-      	strokeWeight(2)
-      	stroke(accent);
-		rect(x,y*visualPos+spacing, itemWidth-0*(itemHeight+spacing), itemHeight,5)
+      	strokeWeight(1)
+      	stroke("gray");
+		rect(x,y+((itemHeight+2*spacing)*visualPos+spacing), itemWidth-0*(itemHeight+spacing), itemHeight,5)
 		//fill
-		stroke("darkCyan");
+		stroke("light"+accent);
 		fill(accent)
-		rect(x,y*visualPos+spacing, (itemWidth-0*(itemHeight+spacing))*(listTable[itemID][2]/100), itemHeight,5)
+		rect(x,y+((itemHeight+2*spacing)*visualPos+spacing), (itemWidth-0*(itemHeight+spacing))*(listTable[itemID][2]/100), itemHeight,5)
 		//text
 		noStroke();
 		fill('white')
 		textSize(17)
-		text(listTable[itemID][0],x+5,(y*visualPos+spacing)+5,width-5,itemHeight-5)
+		text(listTable[itemID][0],x+5,(y+((itemHeight+2*spacing)*visualPos+spacing))+5,width-5,itemHeight-5)
 		textAlign(RIGHT)
-		text(listTable[itemID][2]+"%",x+itemWidth-35,y*visualPos+2.5*spacing,itemHeight+10, itemHeight-5)
+		text(listTable[itemID][2]+"%",x+itemWidth-35,(y+((itemHeight+2*spacing)*visualPos+spacing))+5,itemHeight+10, itemHeight-5)
 		textAlign(LEFT)
 	}
 	else if(type=="loading"){
 		let accent="green"
+    let paddleWidth=(itemHeight*4)
 		//bg
 		fill(60)
-      	strokeWeight(2)
-      	stroke(accent);
-		rect(x,y*visualPos+spacing, itemWidth, itemHeight,5)
+    strokeWeight(1)
+    stroke("gray");
+		rect(x,y+((itemHeight+2*spacing)*visualPos+spacing), itemWidth, itemHeight,5)
 		//fill
-		stroke("darkCyan");
+		stroke("light"+accent);
 		fill(accent)
-		rect(x+(itemWidth*animationLoopPercent(2))-(itemHeight*1.15*spacing),y*visualPos+spacing, (itemHeight*(1.25*spacing)), itemHeight,5)
+		rect((x+itemWidth-paddleWidth)*animationLoopPercent(3500),y+((itemHeight+2*spacing)*visualPos+spacing), paddleWidth, itemHeight,5)
+    //rect(x,y+((itemHeight+2*spacing)*visualPos+spacing), (itemWidth*animationLoopPercent(2500)), itemHeight,5)
 		//text
 		noStroke();
 		fill('white')
 		textSize(17)
 		textAlign(CENTER)
-		text(listTable[itemID][0],x+5,(y*visualPos+spacing)+5,width-5,itemHeight-5)
+		text(listTable[itemID][0],x+5,(y+((itemHeight+2*spacing)*visualPos+spacing))+5,width-5,itemHeight-5)
 		textAlign(LEFT)
 	}
 	else if(type=="toggleSlide"){
@@ -326,23 +355,23 @@ function ListEntry(x,y,itemWidth,itemHeight,listTable,itemID,visualPos,spacing){
 		fill(60)
       	strokeWeight(2)
       	stroke(accent);
-		rect(x+(spacing+itemHeight),y*visualPos+spacing,itemWidth-(itemHeight+spacing), itemHeight,5)
+		rect(x+(spacing+itemHeight),y+((itemHeight+2*spacing)*visualPos+spacing),itemWidth-(itemHeight+spacing), itemHeight,5)
 		//fill
 		stroke("darkCyan");
 		fill(accent)
-		rect(x+(spacing+itemHeight),y*visualPos+spacing,(listTable[itemID][2]/100)*(itemWidth-(itemHeight+spacing)), itemHeight,5)
+		rect(x+(spacing+itemHeight),y+((itemHeight+2*spacing)*visualPos+spacing),(listTable[itemID][2]/100)*(itemWidth-(itemHeight+spacing)), itemHeight,5)
 		//text
 		noStroke();
 		fill('white')
 		textSize(17)
 		textAlign(CENTER)
-		text(listTable[itemID][0],x+5,(y*visualPos+spacing)+5,width-5,itemHeight-5)
+		text(listTable[itemID][0],x+5,(y+((itemHeight+2*spacing)*visualPos+spacing))+5,width-5,itemHeight-5)
 		textAlign(LEFT)
 
 		if(listTable[itemID][2]==true){accent="green"}//set button accent color according to state
     	else{accent="darkCyan"}
-		drawButton(x,y*visualPos+spacing,itemHeight, itemHeight, "O", "green", 230);
-		if(mouseArea(x,y*visualPos+spacing,itemHeight, itemHeight)&&mouseIsPressed){//see if the mouse is in the area of a button and if it is being pressed
+		drawButton(x,y+((itemHeight+2*spacing)*visualPos+spacing),itemHeight, itemHeight, "O", "green", 230);
+		if(mouseArea(x,y+((itemHeight+2*spacing)*visualPos+spacing),itemHeight, itemHeight)&&mouseIsPressed){//see if the mouse is in the area of a button and if it is being pressed
 			if(millis()-timeBase>=timeDelay){
 				if(listTable[itemID][3]==false){listTable[itemID][3]=true}//set relay state to true if it is false
 		 		else(listTable[itemID][3]=false)//set it to false if it is anything else
@@ -350,7 +379,7 @@ function ListEntry(x,y,itemWidth,itemHeight,listTable,itemID,visualPos,spacing){
 		  		console.log(listTable[itemID][0] + "(toggle+slide-toggle):" +visualSettingsList[itemID][3])
 			}
 		}
-		if(mouseArea(x+(spacing+itemHeight),y*visualPos+spacing,itemWidth-(itemHeight+spacing), itemHeight)&&mouseIsPressed){
+		if(mouseArea(x+(spacing+itemHeight),y+((itemHeight+2*spacing)*visualPos+spacing),itemWidth-(itemHeight+spacing), itemHeight)&&mouseIsPressed){
 			let newval = round((mouseX-(x+(spacing+itemHeight)))/(itemWidth-(itemHeight+spacing))*100,1)
 			listTable[itemID][2] = newval
 			console.log(listTable[itemID][0]+" is now set to "+listTable[itemID][2])
@@ -362,11 +391,11 @@ function ListEntry(x,y,itemWidth,itemHeight,listTable,itemID,visualPos,spacing){
       	strokeWeight(2)
       	stroke(accent);
 
-		rect(x,y*visualPos+spacing, itemWidth-0*(itemHeight+spacing), itemHeight,5)
+		rect(x,y+((itemHeight+2*spacing)*visualPos+spacing), itemWidth-0*(itemHeight+spacing), itemHeight,5)
 		noStroke();
 		fill('white')
 		textSize(17)
-		text(txt,x+5,(y*visualPos+spacing)+5,width-5,itemHeight-5)
+		text(txt,x+5,(y+((itemHeight+2*spacing)*visualPos+spacing))+5,width-5,itemHeight-5)
 	}
 }
 

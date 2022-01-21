@@ -6,26 +6,11 @@
 // - describe what you did to take this project "above and beyond"
 
 
-function setup() {
-  createCanvas(drawWidth, 300).parent("jscanvas");
-}
-
-function windowResized(){
-  //drawWidth = windowWidth*0.8;
-  createCanvas(drawWidth, 300).parent("jscanvas");
-}
-
 function draw() {
   background(20);
-  testdraw()
-  drawStat(light0, 7,25,drawWidth);
-  drawStat(light1, 7,65,drawWidth)
-}
-
-function testdraw() {
-  noStroke()
-  fill('gray').
-  rect(0,0,width,4,5)
+  labelDraw("Lights")
+  drawStat(light0, 7,50,drawWidth);
+  drawStat(light1, 7,90,drawWidth)
 }
 
 function drawStat(light, x,y,wid){

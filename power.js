@@ -7,28 +7,14 @@
 
 
 
-function setup() {
-  createCanvas(drawWidth, 300).parent("jscanvas");
-}
-
-function windowResized(){
-  createCanvas(drawWidth, 300).parent("jscanvas");
-}
-
 function draw() {
   background(20);
-  testdraw()
-  drawBattStat(bat0, 10,25,drawWidth)
-  drawBattStat(bat1, 10,75,drawWidth)
-  drawPowerStat(acIn0, 10,125,drawWidth)
-  drawPowerStat(acOut0, 10,175,drawWidth)
-  drawFuelStat(fuel0, 10,225,drawWidth)
-}
-
-function testdraw() {
-  noStroke()
-  fill('gray').
-  rect(0,0,width,4)
+  labelDraw("Power & Meters")
+  drawBattStat(bat0, 10,55,drawWidth)
+  drawBattStat(bat1, 10,105,drawWidth)
+  drawPowerStat(acIn0, 10,155,drawWidth)
+  drawPowerStat(acOut0, 10,205,drawWidth)
+  drawFuelStat(fuel0, 10,255,drawWidth)
 }
 
 function drawBattStat(batt, x,y,wid){

@@ -35,32 +35,19 @@ function preload(){
   optionsIcon = loadImage('js-assets/common/emblem-system.svg');
 }
 
-function setup() {
-  //drawWidth = windowWidth*0.8;
-  createCanvas(drawWidth, 280).parent("jscanvas");
-  artSize = drawWidth/3.7
-}
-
-function windowResized(){
-  drawWidth = windowWidth*0.8;
-  createCanvas(drawWidth, 280).parent("jscanvas");
-  artSize = drawWidth/3.7
-}
 
 function draw() {
+  drawWidth = width*0.8;
+  artSize = drawWidth/3.5
   background(20);
-  testdraw()
+  labelDraw("Media Player")
   mediaLogic(media0)
-  drawMediaStat(media0, 7,25,drawWidth,albumArt, artSize, deviceIcon)
-  mediaControlBG(media0, artSize, 125, drawWidth-artSize, (drawWidth-artSize)/6, 15)
-  mediaControl(media0, artSize, 125, drawWidth-artSize, (drawWidth-artSize)/6, 15)
+  drawMediaStat(media0, 7,60,drawWidth,albumArt, artSize, deviceIcon)
+  mediaControlBG(media0, artSize+5, 170, drawWidth-artSize, (drawWidth-artSize)/6, 15)
+  mediaControl(media0, artSize+5, 170, drawWidth-artSize, (drawWidth-artSize)/6, 15)
 }
 
-function testdraw() {
-  noStroke()
-  fill('gray').
-  rect(0,0,width,4)
-}
+
 
 function drawMediaStat(media, x, y, wid, art, artWidth, sourceIcon){
   stroke("green")
@@ -70,23 +57,23 @@ function drawMediaStat(media, x, y, wid, art, artWidth, sourceIcon){
   image(sourceIcon,x,y-20,30,30)
   noStroke()
   textSize(17)//source info
-  text(media.sourceName + " - " + media.sourceType + ": " + media.mediaStateString, x+33, y);
+  text(media.sourceName + " - " + media.sourceType + ": " + media.mediaStateString, x+40, y);
   textSize(27)//song title
-  text(media.mediaTitle, x+artWidth+7, y+33);
+  text(media.mediaTitle, x+artWidth+10, y+45);
   textSize(17)//artist and album
-  text(media.mediaArtistName + " - " + media.mediaAlbumName, x+artWidth+7, y+60);
+  text(media.mediaArtistName + " - " + media.mediaAlbumName, x+artWidth+10, y+70);
   fill(65)//album art placeholder
   stroke("green")
-  rect(x, y+10, artWidth, artWidth,7)
-  image(art,x, y+10, artWidth, artWidth)
+  rect(x, y+20, artWidth, artWidth,7)
+  image(art,x, y+20, artWidth, artWidth)
   if(!media0.Live){
     strokeWeight(1);
-    progress(x+7+artWidth,y+70,wid-(x*2)-artWidth-3,13,media.mediaProgress,'green','gray','test','gray',2)
+    progress(x+13+artWidth,y+85,wid-(x*2)-artWidth-3,13,media.mediaProgress,'green','gray','test','gray',2)
     textSize(17)//playeed time
     fill('green');
-    text("played " + media.mediaPlayedSec , x+artWidth+10, y+103);
+    text("played " + media.mediaPlayedSec , x+artWidth+12, y+115);
     fill('gray');//time remaining
-    text("left: " + media.mediaLengthSec, wid-70, y+103);
+    text("left: " + media.mediaLengthSec, wid-60, y+115);
   }
   
 }

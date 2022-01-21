@@ -35,10 +35,7 @@ body{
 	background-size: contain;
 	background-position: center;
 	background-repeat: repeat;
-	padding-left: 1.25%;
-	padding-right: 1.25%;
-	padding-bottom: 0.25%;
-	padding-top: 0px;
+	padding: 0;
 	margin: 0px;
 }
 
@@ -271,6 +268,9 @@ homeBG {
 	text-align: left;
 	list-style-type: none;
 	padding: 0px;
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-bottom: -0px;
 	margin-top: 0px;
 	display: block;
 	border-style: solid;
@@ -280,21 +280,24 @@ homeBG {
 
 navBG {
 	background-color: rgb(20, 59, 33, 0);
-	/*background: -moz-linear-gradient(0deg, rgba(2,70,1,1) 0%, rgba(14,119,2,1) 46%, rgba(27,134,2,1) 95%);
+	background: -moz-linear-gradient(0deg, rgba(2,70,1,1) 0%, rgba(14,119,2,1) 46%, rgba(27,134,2,1) 95%);
 	background: -webkit-linear-gradient(0deg, rgba(2,70,1,1) 0%, rgba(14,119,2,1) 46%, rgba(27,134,2,1) 95%);
 	background: linear-gradient(0deg, rgba(2,70,1,1) 0%, rgba(14,119,2,1) 46%, rgba(27,134,2,1) 95%);
-	background-image: url("style/BG/bar2_grey.bmp");*/
-	background-size: 47%, 100%;
+	background-image: url("style/BG/bar2_grey.bmp");
+	background-size: contain;
 	text-align: center;
 	list-style-type: none;
-	padding: -0px;
-	margin-top: 15px;
-	height:35px;
+	padding-top: -0px;
+	padding-bottom: -0px;
+	padding-left: 0px;
+	padding-right: 0px;
+	margin-top: 0px;
+	height:36px;
 	width:100%;
 	margin-bottom: 0px;
-	margin-left: -0%;
-	margin-right: -0%;
-	display: inline-block;
+	margin-left: 0%;
+	margin-right: 0%;
+	display: block;
 	border-style: solid;
 	border-width: 0px;
 	border-radius: 0px;
@@ -305,10 +308,10 @@ nav {
 	list-style-type: none;
 	display: inline-block;
 	padding: 0px;
-	margin-left: 0px;
-	margin-right: 0px;
+	margin-left: 5px;
+	margin-right: 5px;
 	margin-bottom: 0px;
-	margin-top: -5px;
+	margin-top: 0px;
 	display: block;
 	position: -webkit-sticky; /* Safari */
 	position: sticky;
@@ -323,7 +326,10 @@ nav ul {
 	list-style-type: none;
 	display: inline;
 	padding: 0px;
-	margin-top: 1px;
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-top: 0px;
 	border-radius: 0px;
 	border-width: 0px;
 }
@@ -336,6 +342,9 @@ nav ul li {
 	list-style-type: none;
 	display: inline;
 	padding: 0px;
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
 	margin-top: 0px;
 	position: -webkit-sticky; /* Safari */
 	position: sticky;
@@ -350,7 +359,7 @@ nav ul li a {
 	text-align: center;
 	text-decoration: none;
 	display: inline-block;
-	padding: 7.77px;
+	padding: 7px;
 	margin: 0px;
 	border-style: solid;
 	border-width: 0px;
@@ -366,12 +375,15 @@ nav ul li a img {
 	font-size:12px;
 	text-align: center;
 	text-decoration: none;
-	display: inline;
-	padding-top: -2px;
+	display: inline-block;
+	padding-top: -0px;
 	padding-bottom: -2px;
-	padding-left: -2px;
-	padding-right: 7px;
-	margin: -4px;
+	padding-left: 0px;
+	padding-right: 6px;
+	margin-top: -3px;
+	margin-left: -3px;
+	margin-right: 0px;
+	margin-bottom: -3px;
 	border-width: 0px;
 	border-radius: 5px;
 }
@@ -383,7 +395,10 @@ nav ul li name{
 	text-decoration: none;
 	display: inline-block;
 	padding: 4px;
-	margin-top: -1px;
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-top: 0px;
 	border-style: solid;
 	border-width: 0px;
 	border-radius: 3px;
