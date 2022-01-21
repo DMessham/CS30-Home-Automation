@@ -25,10 +25,20 @@ let secure = {
 
 }
 
-let visualSettings = {}
+let visualSettings = {
+  testToggle:false,
+  testNum:3,
+  testInt:3.0,
+  testText:"Hello world!",
+  testDropdown:[["hello0",0],["hello1",1],["hello2",2]],
+  testSlider:50,
+  testProgress:50,
+  testLoading:"ayylmao",
+  testToggleSlider:[20,false],
+}
 
 let visualSettingsList = [//Used for the gui settings page, follows format of [name,type(0toggle,1number,2int,3text,4dropdown)value,locked,Options(offstate/onstate,min/max,variables)]
-  ["testToggle","toggle",false],
+  ["testToggle","toggle",visualSettings.testToggle],
   ["testNum","number",3,0,100],
   ["testInt","numSlider",3.5,0,100],
   ["testText","textEntry","",],
@@ -40,6 +50,33 @@ let visualSettingsList = [//Used for the gui settings page, follows format of [n
 
 ]
 
+//lights
+
+let light0 = {
+    relayId:0,
+    name:'porch light',
+    on:false,
+    bright:0.35,
+}
+let light1 = {
+    relayId:1,
+    name:'cabin light',
+    on:false,
+    bright:0.35,
+}
+
+let lights =[light0,light1]
+
+let lightList = [
+  [lights[0].name,"toggleSlide",lights[0].bright,lights[0].on,0,100],
+  [lights[1].name,"toggleSlide",lights[1].bright,lights[1].on,0,100],
+]
+
+let climate = {
+  zone:0
+}
+
+let relayList = []
 let timeBase = 0//timer used for pacing user input
 let timeDelay = 700//min time between inputs
 
@@ -282,7 +319,7 @@ function ListEntry(x,y,itemWidth,itemHeight,listTable,itemID,visualPos,spacing){
 			}
 		}
 	}
-	else if(type=="slider"){
+	else if(type=="slider"||type=="volume"){
 		let accent="green"
 		//bg
 		fill(60)
@@ -349,7 +386,7 @@ function ListEntry(x,y,itemWidth,itemHeight,listTable,itemID,visualPos,spacing){
 		text(listTable[itemID][0],x+5,(y+((itemHeight+2*spacing)*visualPos+spacing))+5,width-5,itemHeight-5)
 		textAlign(LEFT)
 	}
-	else if(type=="toggleSlide"){
+	else if(type=="toggleSlide"||type=="light"){
 		let accent="green"
 		//bg
 		fill(60)
@@ -521,21 +558,7 @@ let gpioPins = [//pin,name,type,active/state
               [0,"gpio0","output",false],
               [1,"gpio1","output",false],
               [2,"gpio2","output",false]]
-//lights
-let light0 = {
-  lightRelayId:0,
-  lightName:'porch light',
-  lightOn:false,
-  lightBrightControl:true,
-  lightBright:0.35,
-}
-let light1 = {
-  lightRelayId:1,
-  lightName:'cabin light',
-  lightOn:false,
-  lightBrightControl:true,
-  lightBright:0.35,
-}
+
 
 //media
 let media0 = {

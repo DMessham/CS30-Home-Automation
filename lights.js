@@ -9,8 +9,11 @@
 function draw() {
   background(20);
   labelDraw("Lights")
-  drawStat(light0, 7,50,drawWidth);
-  drawStat(light1, 7,90,drawWidth)
+  //drawStat(light0, 7,50,drawWidth);
+  //drawStat(light1, 7,90,drawWidth)
+  for(let list=0; list<lightList.length; list++){
+		ListEntry(3,35,width-5,25,lightList,list,list,3)
+	}
 }
 
 function drawStat(light, x,y,wid){

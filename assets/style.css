@@ -217,31 +217,10 @@ notice .titleShadow {
 	transform: skewX(-10deg) translate(4px,1.5px);
 }
 
-
-name{
-	border: 2px solid rgba(37, 114, 37, 0.322);
-	color: rgba(255, 255, 255, 0.621);
-	opacity: 1;
-	font-size:22px;
-	text-align: center;
-	text-decoration: none;
-	display: inline-block;
-	border-style: solid;
-	border-width: 2px;
-	border-radius: 0px;
-	background-image: url("style/button_bg.png");
-	background-size: cover;
-	background-position: center;
-	background-clip: border-box;
-	background-repeat: repeat-x;
-}
-
 a {
-	line-height: 0.8;
 	background-color: rgba(0, 0, 0, 0.16);
 	border: 2px solid rgba(0, 128, 0, 0.286);
 	color: white;
-	opacity: 1;
 	font-size:20px;
 	text-align: center;
 	text-decoration: underline;
@@ -254,12 +233,12 @@ a {
 }
 
 li a{
-	line-height: 0.9;
+	
 	background-color: rgba(0, 0, 0, 0.02);
 	color: lightseagreen;
 	list-style-image: url("style/buttons/chevron-inverted.png");
 	display: inline-block;
-	list-style-position: inside;
+	list-style-position: outside;
 	padding: 2px;
 	margin-top: 0px;
 	margin-bottom: 0px;
@@ -311,6 +290,101 @@ navBG {
 	overflow: hidden;
 	top: 0px;
 }
+
+.navbar{
+	background-color: rgb(20, 59, 33, 0);
+	background: -moz-linear-gradient(0deg, rgba(2,70,1,1) 0%, rgba(14,119,2,1) 46%, rgba(27,134,2,1) 95%);
+	background: -webkit-linear-gradient(0deg, rgba(2,70,1,1) 0%, rgba(14,119,2,1) 46%, rgba(27,134,2,1) 95%);
+	background: linear-gradient(0deg, rgba(2,70,1,1) 0%, rgba(14,119,2,1) 46%, rgba(27,134,2,1) 95%);
+	background-image: url("style/BG/bar2_grey.bmp");
+	background-size: contain;
+	text-align: center;
+	list-style-type: none;
+	padding: 0px;
+	margin: 0px;
+	width:100%;
+	display: block;
+	border-style: solid;
+	border-width: 0px;
+	border-radius: 0px;
+	color: white;
+	list-style-type: none;
+}
+.navbar li {
+	background-color: rgba(0, 0, 0, 0.12);
+	color: white;
+	margin: 0px;
+	padding: 0px;
+	display: inline-block;
+	border-style: none;
+	border-width: 0px;
+	border-radius: 3px;
+}
+.navbar li a {
+	background-image: url("style/BG/bar2_grey.bmp");
+	border: 0px solid rgba(37, 114, 37, 0.012);
+	background-color: rgb(20, 59, 33);
+	font-size:22px;
+	text-align: left;
+	text-decoration: none;
+	display: inline-block;
+	padding: 7px;
+	padding-right:9;
+	margin: 0px;
+	background-size: cover;
+	background-repeat: repeat-x;
+}
+.navbar .name{
+	background-image: url("style/BG/bar2_blue.bmp");
+	border: 0px solid rgba(37, 114, 37, 0.012);
+	background-color: rgb(20, 59, 33);
+	font-size:22px;
+	text-align: left;
+	display: inline-block;
+	padding: 7px;
+	padding-left:9;
+	padding-right:9;
+	border-style: none;
+	background-size: cover;
+}
+.navbar img {
+	background-color: rgb(20, 59, 33, 0);
+	background-clip: border;
+	text-align: center;
+	text-decoration: none;
+	display: inline;
+	padding-right: 6px;
+	border-radius: 5px;
+	border-style: none;
+	height:24px;
+	margin-bottom:-4px;
+}
+
+
+.navbar a:hover {
+	background-color: rgba(0, 128, 0, 0.24);
+	border-color: rgba(255, 255, 255, 0.06);
+	color: white;
+	text-decoration: underline;
+	background-image: url("style/BG/bar2_green.bmp");
+  }
+
+.navbar .active {
+	background-color: rgba(0, 128, 0, 0.24);
+	border-color: rgba(255, 255, 255, 0.06);
+	color: white;
+	text-decoration: underline;
+	background-image: url("style/BG/bar2_green.bmp");
+}
+.navbar .active:hover {
+	background-color: rgba(0, 128, 0, 0.24);
+	border-color: rgba(255, 255, 255, 0.06);
+	color: white;
+	text-decoration: underline;
+	background-image: url("style/BG/bar2_green.bmp");
+  }
+
+
 
 nav {
 	text-align: center;
