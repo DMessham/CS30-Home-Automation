@@ -7,7 +7,7 @@
 
 function draw() {
   background(20);
-  labelDraw("Relays")
+  labelDraw("Auxillary Relays")
   relayMenu()
 }
 

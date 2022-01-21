@@ -114,44 +114,6 @@ function animationLoopPercent(time){
   return( (millis())%time/time)
 }
 
-//let drawWidth;
-
-//function setup() {
-  //drawWidth = windowWidth*0.8;
-  //createCanvas(drawWidth, 300).parent("jscanvas");
-//}
-
-//function windowResized(){
-  //drawWidth = windowWidth*0.8;
-  //createCanvas(drawWidth, 300).parent("jscanvas");
-//}
-
-//placeholder for gpio&sensor reference values
-class Gpio {
-  constructor(name, type, id) {
-    this.name = name;
-    this.type = type;
-    this.id = id;
-  }
-  getName(){
-    return this.name
-  }
-
-  getType(){
-    return this.type
-  }
-}
-
-class piface2 extends Gpio {
-  constructor(name){
-    super(name, 'test');
-  }
-
-  getName(){
-    return "this is a: " + super.getName();
-  }
-}
-
 //common controls
 function drawButton(x,y,buttonWidth, buttonHeight, txt, accent, txtColor){
   if(mouseArea(x,y,buttonWidth,buttonHeight)){

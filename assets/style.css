@@ -108,7 +108,7 @@ div {
 	border-width: 2px;
 	border-style: solid;
 	border-radius: 5px;
-	border-color: midnightblue;
+	border-color: blue;
 	background-color: rgba(32, 16, 172, 0.5);
 }
 
@@ -187,12 +187,36 @@ notice img {
 }
 
 notice p {
-	margin-left: 2px;
+	margin-left: 22px;
 	margin-right: 1px;
-	margin-bottom: 2px;
+	margin-bottom: 0px;
 	margin-top: 0px;
 	display: inine;
 }
+
+notice ul li {
+	margin-left: 22px;
+	margin-right: 1px;
+	margin-bottom: 0px;
+	margin-top: 0px;
+	color: floralwhite;
+	list-style-image: url("style/chevron-inverted.png");
+}
+
+notice ul li a{
+	
+	background-color: rgba(0, 0, 0, 0.02);
+	color: lightseagreen;
+	display: inline-block;
+	list-style-position: outside;
+	margin-left: 1px;
+	margin-right: 0px;
+	margin-bottom: 1px;
+	margin-top: 1px;
+	display: inine;
+	font-size: inherit;
+}
+
 
 notice .title {
 	color: ghostwhite;
@@ -236,18 +260,9 @@ li a{
 	
 	background-color: rgba(0, 0, 0, 0.02);
 	color: lightseagreen;
-	list-style-image: url("style/buttons/chevron-inverted.png");
+	list-style-image: url("style/chevron-inverted.png");
 	display: inline-block;
 	list-style-position: outside;
-	padding: 2px;
-	margin-top: 0px;
-	margin-bottom: 0px;
-	margin-left: 10px;
-	margin-right: 10px;
-	border-style: solid;
-	border-width: 1px;
-	border-radius: 3px;
-
 }
 
 homeBG {

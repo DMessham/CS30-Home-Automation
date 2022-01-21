@@ -8,7 +8,7 @@
 
 function draw() {
   background(20);
-  labelDraw("Lights")
+  labelDraw("Lights & Climate Control")
   //drawStat(light0, 7,50,drawWidth);
   //drawStat(light1, 7,90,drawWidth)
   for(let list=0; list<lightList.length; list++){

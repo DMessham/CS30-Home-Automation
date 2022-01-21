@@ -12,33 +12,38 @@
 	<meta name="theme-color" content="#325F29">
 </head>
 <body>
-	<nav>
-		<navBG>
-		<ul>
-		<li><name>DMessham's CS30 Project</name></li>
-		<li><a href = "home.html">Home</a></li>
-		<li><a href="debug.html">Debug</a></li>
-		<li><a href="media.html">Media</a></li>
-		<li><a href="relayControl.html">Relays</a></li>
-		<li><a href="powerManagement.html">Power</a></li>
-		<li><a href="lights.html">Lights</a></li>
-		<li><a href="settings.html">Settings</a></li>
+	<ul class="navbar">
+				<li class="name">DMessham's CS30 Project</li>
+				<li><a href = "home.html"><img src="assets/icons/tango/scalable/actions/go-home.svg">Home</a></li>
+				<li><a href="debug.html"><img src="assets/icons/tango/scalable/categories/applications-other.svg">Debug</a></li>
+				<li><a href="media.html"><img src="assets/icons/tango/scalable/categories/applications-multimedia.svg" >Media</a></li>
+				<li><a href="relayControl.html"><img src="assets/icons/tango/scalable/actions/system-shutdown.svg" >Relays</a></li>
+				<li><a href="powerManagement.html"><img src="assets/icons/tango/scalable/devices/battery.svg">Power</a></li>
+				<li><a href="lights.html"><img src="assets/icons/tango/scalable/status/weather-clear.svg" >Comfort</a></li>
+				<li><a href="settings.html"><img src="assets/icons/tango/scalable/emblems/emblem-system.svg">Settings</a></li>
 	</ul>
-</navBG>
-</nav>
-
 <noticeBlock>
-	<error>
-		<img src="assets/style/icons/error-64.png" height=32px> <p> ERROR:
-		The request/page could not be processed/loaded: </p>
-		<ul>
-			<li>It may not exist</li>
-			<li>The request may be invalid, or not applicable to this configuration</li>
-			<li>You may not have permission to access it</li>
-			<li>An internal error may have occured</li>
-			<li>The server may be down for maintence</li>
-		<ul>
-	</error>
+	<notice class=error>
+		<img src="assets/style/icons/error-64.png" ><p class= titleShadow>an error has occured:</p><p class= title>an error has occured:</p>
+			<p>The request/page could not be processed for an unknown reason.</p>
+			<p><ul>
+				<li>It may not exist</li>
+				<li>The request may be invalid, or not applicable to this configuration</li>
+				<li>You may not have permission to access/use it</li>
+				<li>An internal error may have occured</li>
+				<li>The server may be down for maintence</li>
+				<li>The server may be down for maintence</li>
+			</ul></p>
+			<img src="assets/style/icons/preferences-system.svg"><p class= titleShadow>troubleshooting:</p><p class= title>troubleshooting:</p>
+			<p>Depending on what you were tring to do, you may want to:</p>
+				<ul>
+					<li><a href="javascript:history.go(0)">Reload</a> the page</li>
+					<li><a href="javascript:history.go(1)">Go Back</a> to the previous page</li>
+					<li>Wait and try again</li>
+					<li>Go Outside and touch grass</li>
+				</notice>
+		
+	</notice>
 </noticeBlock>
 
 </body>
