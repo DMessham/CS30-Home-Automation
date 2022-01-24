@@ -38,7 +38,7 @@ function preload(){
 
 function draw() {
   drawWidth = width*0.8;
-  artSize = drawWidth/3.5
+  artSize = 300
   background(20);
   labelDraw("Media Player")
   mediaLogic(media0)

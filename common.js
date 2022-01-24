@@ -39,42 +39,17 @@ let visualSettings = {
 
 let visualSettingsList = [//Used for the gui settings page, follows format of [name,type(0toggle,1number,2int,3text,4dropdown)value,locked,Options(offstate/onstate,min/max,variables)]
   ["testToggle","toggle",visualSettings.testToggle],
-  ["testNum","number",3,0,100],
-  ["testInt","numSlider",3.5,0,100],
-  ["testText","textEntry","",],
-  ["testDropdown","dropdownMenu",[["option1Var","option1Text"],["option1Var","option1Text"]],],
-  ["testSlider","slider",3.5,0,100],
-  ["testProgress","progress",3.5,0,100],
+  ["testNum","number",visualSettings.testNum,0,100],
+  ["testInt","numSlider",visualSettings.testInt,0,100],
+  ["testText","textEntry",visualSettings.testText,],
+  ["testDropdown","dropdownMenu",visualSettings.testDropdown,],
+  ["testSlider","slider",visualSettings.testSlider,0,100],
+  ["testProgress","progress",visualSettings.testProgress,0,100],
   ["testLoading","loading"],
-  ["testToggle+Slider","toggleSlide",3.5,false,0,100],
+  ["testToggle+Slider","toggleSlide",visualSettings.testToggleSlider[0],visualSettings.testToggleSlider[1],0,100],
 
 ]
 
-//lights
-
-let light0 = {
-    relayId:0,
-    name:'porch light',
-    on:false,
-    bright:0.35,
-}
-let light1 = {
-    relayId:1,
-    name:'cabin light',
-    on:false,
-    bright:0.35,
-}
-
-let lights =[light0,light1]
-
-let lightList = [
-  [lights[0].name,"toggleSlide",lights[0].bright,lights[0].on,0,100],
-  [lights[1].name,"toggleSlide",lights[1].bright,lights[1].on,0,100],
-]
-
-let climate = {
-  zone:0
-}
 
 let relayList = []
 let timeBase = 0//timer used for pacing user input
@@ -183,9 +158,11 @@ function progress(x,y,width,height,value,fillCol='green',bgCol='gray',txt='',bor
     text(txt,x+(width-(borThk)*2)*(value/100),y)
 }
 
-function ListEntry(x,y,itemWidth,itemHeight,listTable,itemID,visualPos,spacing){
+function ListEntry(x,y,itemWidth,itemHeight,listTable,itemID,visualPosOffset,spacing){
 	textAlign(LEFT)
-	let type = (listTable[itemID][1])
+  let txt = "text"
+	let type = listTable[itemID][1]
+  let visualPos = itemID + visualPosOffset
 	if(type=="toggle"){
 		let txt = listTable[itemID][0]
 		if(listTable[itemID][2]==true){accent="green"}//set button accent color according to state
@@ -210,7 +187,7 @@ function ListEntry(x,y,itemWidth,itemHeight,listTable,itemID,visualPos,spacing){
 			if(millis()-timeBase>=550){
 				if(listTable[itemID][2]<listTable[itemID][4]){listTable[itemID][2]++}//set relay state to true if it is false
 		  		timeBase = millis()//reset the delay for a button press
-		  		console.log(txt + "(num+):" +visualSettingsList[itemID][2])
+		  		console.log(txt + "(num+):" +listTable[itemID][2])
 			}
 		}
 		//minus
@@ -219,7 +196,7 @@ function ListEntry(x,y,itemWidth,itemHeight,listTable,itemID,visualPos,spacing){
 			if(millis()-timeBase>=550){
 				if(listTable[itemID][2]>listTable[itemID][3]){listTable[itemID][2]--}//set relay state to true if it is false
 		  		timeBase = millis()//reset the delay for a button press
-		  		console.log(txt + "(num-):" +visualSettingsList[itemID][2])
+		  		console.log(txt + "(num-):" +listTable[itemID][2])
 			}
 		}
 	}
@@ -256,7 +233,7 @@ function ListEntry(x,y,itemWidth,itemHeight,listTable,itemID,visualPos,spacing){
 			if(millis()-timeBase>=timeDelay){
 				if(listTable[itemID][2]<listTable[itemID][4]){listTable[itemID][2]++}//set relay state to true if it is false
 		  		timeBase = millis()//reset the delay for a button press
-		  		console.log(txt + "(textentry):" +visualSettingsList[itemID][2])
+		  		console.log(txt + "(textentry):" +vlistTable[itemID][2])
 			}
 		}
 	}
@@ -268,7 +245,7 @@ function ListEntry(x,y,itemWidth,itemHeight,listTable,itemID,visualPos,spacing){
 			if(millis()-timeBase>=timeDelay){
 				if(listTable[itemID][2]<listTable[itemID][4]){listTable[itemID][2]++}//set relay state to true if it is false
 		  		timeBase = millis()//reset the delay for a button press
-		  		console.log(txt + "(dropdownmenu-label):" +visualSettingsList[itemID][2])
+		  		console.log(txt + "(dropdownmenu-label):" +listTable[itemID][2])
 			}
 		}
 		//plus button
@@ -277,7 +254,7 @@ function ListEntry(x,y,itemWidth,itemHeight,listTable,itemID,visualPos,spacing){
 			if(millis()-timeBase>=timeDelay){
 				if(listTable[itemID][2]<listTable[itemID][4]){listTable[itemID][2]++}//set relay state to true if it is false
 		  		timeBase = millis()//reset the delay for a button press
-		  		console.log(txt + "(dropdownmenu-arrow):" +visualSettingsList[itemID][2])
+		  		console.log(txt + "(dropdownmenu-arrow):" +listTable[itemID][2])
 			}
 		}
 	}
@@ -364,24 +341,27 @@ function ListEntry(x,y,itemWidth,itemHeight,listTable,itemID,visualPos,spacing){
 		fill('white')
 		textSize(17)
 		textAlign(CENTER)
-		text(listTable[itemID][0],x+5,(y+((itemHeight+2*spacing)*visualPos+spacing))+5,width-5,itemHeight-5)
+		text(listTable[itemID][0],x+5,(y+((itemHeight+2*spacing))*visualPos+spacing)+5,width-5,itemHeight-5)
 		textAlign(LEFT)
 
 		if(listTable[itemID][2]==true){accent="green"}//set button accent color according to state
     	else{accent="darkCyan"}
-		drawButton(x,y+((itemHeight+2*spacing)*visualPos+spacing),itemHeight, itemHeight, "O", "green", 230);
-		if(mouseArea(x,y+((itemHeight+2*spacing)*visualPos+spacing),itemHeight, itemHeight)&&mouseIsPressed){//see if the mouse is in the area of a button and if it is being pressed
+		drawButton(x,y+((itemHeight+2*spacing)*visualPos+spacing),2*itemHeight, itemHeight, listTable[itemID][3], "green", 230);
+		if(mouseArea(x,y+((itemHeight+2*spacing)*visualPos+spacing),2*itemHeight, itemHeight)&&mouseIsPressed){//see if the mouse is in the area of a button and if it is being pressed
 			if(millis()-timeBase>=timeDelay){
-				if(listTable[itemID][3]==false){listTable[itemID][3]=true}//set relay state to true if it is false
+				if(listTable[itemID][3]==false){
+          listTable[itemID][3]=true
+          timeBase = millis()//reset the delay for a button press
+		  		console.log(listTable[itemID][0] + "(toggle+slide-toggle):" +listTable[itemID][3])}//set relay state to true if it is false
 		 		else(listTable[itemID][3]=false)//set it to false if it is anything else
 		  		timeBase = millis()//reset the delay for a button press
-		  		console.log(listTable[itemID][0] + "(toggle+slide-toggle):" +visualSettingsList[itemID][3])
+		  		console.log(listTable[itemID][0] + "(toggle+slide-toggle):" +listTable[itemID][3])
 			}
 		}
-		if(mouseArea(x+(spacing+itemHeight),y+((itemHeight+2*spacing)*visualPos+spacing),itemWidth-(itemHeight+spacing), itemHeight)&&mouseIsPressed){
-			let newval = round((mouseX-(x+(spacing+itemHeight)))/(itemWidth-(itemHeight+spacing))*100,1)
-			listTable[itemID][2] = newval
+		if(mouseArea(x+(spacing+itemHeight),y+((itemHeight+2*spacing)*visualPos+spacing),itemWidth-((2*itemHeight)+spacing), itemHeight)&&mouseIsPressed){
+			listTable[itemID][2] = round((mouseX-(x+(spacing+itemHeight)))/(itemWidth-((2*itemHeight)+spacing))*100,1)//set variable to new value
 			console.log(listTable[itemID][0]+" is now set to "+listTable[itemID][2])
+      return round((mouseX-(x+(spacing+itemHeight)))/(itemWidth-((2*itemHeight)+spacing))*100,1)
 		}
 	}
 	else{

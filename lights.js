@@ -4,19 +4,110 @@
 //
 // Extra for Experts:
 // - describe what you did to take this project "above and beyond"
+let light0 = {
+  relayId:0,
+  name:'porch light',
+  on:false,
+  bright:0.35,
+}
+let light1 = {
+  relayId:1,
+  name:'cabin light',
+  on:false,
+  bright:0.35,
+}
 
+let lights =[light0,light1]
+
+let lightList = [
+[lights[0].name,"toggleSlide",lights[0].bright,lights[0].on,0,100],
+[lights[1].name,"toggleSlide",lights[1].bright,lights[1].on,0,100]
+]
+
+
+let outsideInfo = {
+temp:-10,
+wind:5,
+tempUnit:"c",
+windUnit:"MS",
+}
+
+let climate0 = {
+active:false,
+zones:0,
+tempUnit:"C",
+name:"House",
+setTemp:22,
+curTemp:15,
+canHeat:true,
+canCool:true,
+canHeatpump:true,//for running a/c units in "reverse" as heat pumps for lower power heating
+coolingType:"electric",
+heatingType:"natGas",
+coolRange:[15,45],
+heatRange:[-45,20],
+heatPumpRange:[-10,20],
+totalRange:[-45,],
+mode:"heat"
+}
+let climate1 = {
+active:false,
+zones:1,
+tempUnit:"C",
+name:"Driver",
+setTemp:27,
+curTemp:15,
+canHeat0:true,
+canCool:true,
+canHeatpump:false,//for running a/c units in "reverse" as heat pumps for lower power heating
+coolingType:"autoAC",
+heatingType:"autoHeat",
+coolRange:[15,43],
+heatRange:[-45,20],
+startEngineRelay:2,
+engineRunning:false,
+mode:"heat"
+}
+let climate2 = {
+active:false,
+zones:1,
+tempUnit:"C",
+name:"Passenger",
+setTemp:27,
+curTemp:15,
+canHeat:true,
+canCool:true,
+canHeatpump:false,//for running a/c units in "reverse" as heat pumps for lower power heating
+coolingType:"autoAC",
+heatingType:"autoHeat",
+coolRange:[15,43],
+heatRange:[-45,20],
+startEngineRelay:2,
+engineRunning:false,
+mode:"heat"
+}
+
+climateZones = [climate0,climate1,climate2]
+climateList = [
+  ["Outside Temperature: "+(outsideInfo.temp),"slider",50+outsideInfo.temp,0,100],
+  [climate0.name + ":" + climate0.curTemp+", set: " + climate0.setTemp+ " " + climate0.tempUnit,"toggleSlide",climate0.setTemp,climate0.active,-10,40],
+  [climate1.name + ":" + climate1.curTemp+", set: " + climate1.setTemp+ " " + climate1.tempUnit,"toggleSlide",climate1.setTemp,climate1.active,-10,40],
+  [climate2.name + ":" + climate2.curTemp+", set: " + climate2.setTemp+ " " + climate2.tempUnit,"toggleSlide",climate2.setTemp,climate2.active,-10,40]
+  ]
 
 function draw() {
   background(20);
   labelDraw("Lights & Climate Control")
-  //drawStat(light0, 7,50,drawWidth);
-  //drawStat(light1, 7,90,drawWidth)
-  for(let list=0; list<lightList.length; list++){
-		ListEntry(3,35,width-5,25,lightList,list,list,3)
+  //drawLightStat(light0, 7,50,drawWidth);
+  //drawLightStat(light1, 7,90,drawWidth)
+  for(let list=0; list<lightList.length+climateList.length; list++){
+		ListEntry(3,35,width-5,25,lightList,list,0,3)
+    console.log("drew lights")
+    ListEntry(3,35,width-5,25,climateList,list,lightList.length,3)
 	}
 }
 
-function drawStat(light, x,y,wid){
+function drawLightStat(light, x,y,wid){
   strokeWeight(1);
   stroke("white");//brighnessbar bg
   fill('gray');
