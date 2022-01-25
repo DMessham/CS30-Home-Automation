@@ -95,27 +95,27 @@ let climateZones = [  [climate0.name,climate0.setTemp,climate0.active],
   
 let climates = [//janky workaround
   ["progress", "Outside Temperature: "+(outsideInfo.temp),outsideInfo.temp],
-  ["toggleSlide",climateZones[0][0],climateZones[0][1],climateZones[0][2],0,100],
-  ["toggleSlide",climateZones[1][0],climateZones[1][1],climateZones[1][2],0,100],
-  ["toggleSlide",climateZones[2][0],climateZones[2][1],climateZones[2][2],0,100],
+  ["toggleSlide",climateZones[0][0],climate0.setTemp,climate0.active,0,100],
+  ["toggleSlide",climateZones[1][0],climate1.setTemp,climate1.active,0,100],
+  ["toggleSlide",climateZones[2][0],climate2.setTemp,climate2.active,0,100],
 ]
 
 function draw() {
   background(20);
-  labelDraw("Lights & Climate Control")
+  labelDraw("Lights & Climate Control (VERY BROKEN RN)")
   //drawLightStatFallback(light0, 7,50,drawWidth);
   //drawLightStatFallback(light1, 7,90,drawWidth)
   for(let list=0; list<lightList.length+climates.length; list++){
     //drawControls(3,35,width-5,25,lightList,list,0,3)
-		listEntry(3,35,width-5,25,lightList,list,0,3,"toggleSlider")
-    console.log("drew lights,begin outside temp")
+	  //listEntry(3,35,width-5,25,lightList,list,0,3,"toggleSlider")
+    //console.log("drew lights,begin outside temp")
     altProgress(3,35,width-5,25,(outsideInfo.temp+50),"Outside: "+(outsideInfo.temp)+""+outsideInfo.tempUnit,lightList.length,3,100)
-    console.log("drew outside temp,begin temp controls")
-    toggleSlide2(3,35,width-5,25,climates[0][2],climates[0][3],climates[0][1],lightList.length+list,3)
+    //console.log("drew outside temp,begin temp controls")
+    //toggleSlide2(3,35,width-5,25,climates[0][2],climates[0][3],climates[0][1],lightList.length+list,3)
 	}
-  toggleSlide2(3,35,width-5,25,climates[0][2],climates[0][3],climates[0][1],lightList.length+2,3)
-  toggleSlide2(3,35,width-5,25,climates[1][2],climates[1][3],climates[0][1],lightList.length+3,3)
-  toggleSlide2(3,35,width-5,25,climates[2][2],climates[0][3],climates[0][1],lightList.length+4,3)
+  toggleSlide2(3,35,width-5,25,climate0.setTemp,climate0.active,climate0.name,lightList.length+2,3,)//placeholder until i figure what the hell is going on
+  toggleSlide2(3,35,width-5,25,climate1.setTemp,climate1.active,climate1.name,lightList.length+3,3)
+  toggleSlide2(3,35,width-5,25,climate2.setTemp,climate2.active,climate2.name,lightList.length+4,3)
 }
 
 function drawControls(x,y,itemWidth,itemHeight,listTable,itemID,visualPosOffset,spacing){
@@ -126,7 +126,7 @@ function drawControls(x,y,itemWidth,itemHeight,listTable,itemID,visualPosOffset,
 }
 
 function drawTemp(){
-  toggleSlide2(x,y,itemWidth,itemHeight,sliderVal,toggleVal,title,visualPosOffset,spacing)
+  toggleSlide2(x,y,itemWidth,itemHeight,sliderVal,toggleVal,title,visualPosOffset,spacing,50)
 }
 function drawLightStatFallback(light, x,y,wid){
   strokeWeight(1);

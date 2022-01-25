@@ -425,27 +425,28 @@ function toggleSlide(x,y,itemWidth,itemHeight,listTable,itemID,visualPosOffset,s
   }
 }
 
-function toggleSlide2(x,y,itemWidth,itemHeight,sliderVal,toggleVal,title,visualPosOffset,spacing){
+function toggleSlide2(x,y,itemWidth,itemHeight,sliderVal,toggleVal,title,visualPosOffset,spacing,maxVal,altval=""){
   let accent="green"
   let visualPos = visualPosOffset
   let txt = sliderVal
-  let txt2 = title+":"+toggleVal
+  let txt2 = title+altval
   //bg
   fill(60)
       strokeWeight(2)
       stroke(accent);
-  rect(x+2*(spacing+itemHeight),y+((itemHeight+2*spacing)*visualPos+spacing),itemWidth-2*(itemHeight+spacing), itemHeight,5)
+  rect(x+2*(spacing+itemHeight),y+((itemHeight+2*spacing)*visualPos+spacing),itemWidth-(4*itemHeight)-(5*spacing), itemHeight,5)
   //fill
   stroke("darkCyan");
   fill(accent)
-  rect(x+2*(spacing+itemHeight),y+((itemHeight+2*spacing)*visualPos+spacing),(sliderVal/100)*(itemWidth-2*(itemHeight+spacing)), itemHeight,5)
+  rect(x+2*(spacing+itemHeight),y+((itemHeight+2*spacing)*visualPos+spacing),(sliderVal/100)*(itemWidth)-((4*itemHeight)+(5*spacing)), itemHeight,5)
   //text
   noStroke();
   fill('white')
   textSize(17)
-  text(txt,x+5,(y+((itemHeight+2*spacing)*visualPos+spacing))+5,width-5,itemHeight-5)
+  textAlign(LEFT)
+    text(txt2,x+2*(2*spacing+itemHeight),(y+((itemHeight+2*spacing)*visualPos+spacing))+5,width-(4*itemHeight+5*spacing),itemHeight-5)
 		textAlign(RIGHT)
-		text(txt2,x+itemWidth-35,(y+((itemHeight+2*spacing)*visualPos+spacing))+5,itemHeight+10, itemHeight-5)
+		text(txt,x+itemWidth-(4*itemHeight+5*spacing),(y+((itemHeight+2*spacing)*visualPos+spacing))+5,itemHeight+20, itemHeight-5)
 		textAlign(LEFT)
 
   //textAlign(CENTER)
@@ -454,22 +455,45 @@ function toggleSlide2(x,y,itemWidth,itemHeight,sliderVal,toggleVal,title,visualP
 
   if(toggleVal==true){accent="green"}//set button accent color according to state
     else{accent="darkCyan"}
-  drawButton(x,y+((itemHeight+2*spacing)*visualPos+spacing),2*itemHeight, itemHeight, toggleVal+" ", "green", 230);
+  drawButton(x,y+((itemHeight+2*spacing)*visualPos+spacing),2*itemHeight, itemHeight, str(toggleVal), "green", 230);
   if(mouseArea(x,y+((itemHeight+2*spacing)*visualPos+spacing),2*itemHeight, itemHeight)&&mouseIsPressed){//see if the mouse is in the area of a button and if it is being pressed
     if(millis()-timeBase>=timeDelay){
       if(toggleVal==false){
         toggleVal=true
         timeBase = millis()//reset the delay for a button press
-        console.log(title + "(toggle+slide-toggle):" +toggleVal)}//set relay state to true if it is false
+        console.log(title + "(toggle+slide-toggle):" +toggleVal)
+        return(sliderVal,toggleVal)}//set relay state to true if it is false
+        
       else(toggleVal=false)//set it to false if it is anything else
         timeBase = millis()//reset the delay for a button press
         console.log(title + "(toggle+slide-toggle):" +toggleVal)
+        return(sliderVal,toggleVal)
     }
   }
-  if(mouseArea(x+(spacing+itemHeight),y+((itemHeight+2*spacing)*visualPos+spacing),itemWidth-((2*itemHeight)+spacing), itemHeight)&&mouseIsPressed){
-    sliderVal = round((mouseX-(x+(spacing+itemHeight)))/(itemWidth-((2*itemHeight)+spacing))*100,1)//set variable to new value
+  //plus button
+  drawButton(x+itemWidth-(itemHeight),y+((itemHeight+2*spacing)*visualPos+spacing),itemHeight, itemHeight, "+", "green", 230);
+  if(mouseArea(x+itemWidth-(itemHeight),y+((itemHeight+2*spacing)*visualPos+spacing),itemHeight, itemHeight)&&mouseIsPressed){//see if the mouse is in the area of a button and if it is being pressed
+    if(millis()-timeBase>=550){
+      if(sliderVal<maxVal){sliderVal++}//set relay state to true if it is false
+        timeBase = millis()//reset the delay for a button press
+        console.log(txt + "(num+):" +sliderVal)
+        return(sliderVal,toggleVal)
+    }
+  }
+  //minus
+  drawButton(x+(itemWidth-spacing-2*itemHeight),y+((itemHeight+2*spacing)*visualPos+spacing),itemHeight, itemHeight, "-", "red", 230);
+  if(mouseArea(x+(itemWidth-spacing-2*itemHeight),y+((itemHeight+2*spacing)*visualPos+spacing),itemHeight, itemHeight)&&mouseIsPressed){//see if the mouse is in the area of a button and if it is being pressed
+    if(millis()-timeBase>=550){
+      if(sliderVal>-maxVal){sliderVal--}//set relay state to true if it is false
+        timeBase = millis()//reset the delay for a button press
+        console.log(txt + "(num-):" +sliderVal)
+        return(sliderVal,toggleVal)
+    }
+  }
+  if(mouseArea(x+(2*itemHeight+3*spacing),y+((itemHeight+2*spacing)*visualPos+spacing),itemWidth-(4*itemHeight+5*spacing), itemHeight)&&mouseIsPressed){
+    sliderVal = round((mouseX/(x-(4*itemHeight+5*spacing)+(itemWidth))-0.04)*100)//set variable to new value
     console.log(title+" is now set to "+sliderVal)
-    return round((mouseX-(x+(spacing+itemHeight)))/(itemWidth-((2*itemHeight)+spacing))*100,1)
+    return(sliderVal,toggleVal)
   }
 }
 
