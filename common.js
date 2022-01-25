@@ -64,14 +64,14 @@ function setup(){
 canvasDiv = document.getElementById('jscanvas');
 let width = canvasDiv.offsetWidth;
 let height = canvasDiv.offsetHeight;
-let render = createCanvas(width-15, 450).parent("jscanvas");
+let render = createCanvas(width-30, 450).parent("jscanvas");
 render.style('margin', '-10px');
 }
 
 function windowResized() {
   let width = canvasDiv.offsetWidth;
   let height = canvasDiv.offsetHeight;
-  resizeCanvas(width-15, 450);
+  resizeCanvas(width-20, 450);
 }
 
 function labelDraw(name) {
