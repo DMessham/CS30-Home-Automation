@@ -16,6 +16,6 @@ function draw() {
 	background(20);
 	labelDraw("Settings")
 	for(let list=0; list<visualSettingsList.length; list++){
-		ListEntry(3,35,width-5,25,visualSettingsList,list,list,3)
+		listEntry(3,35,width-5,25,visualSettingsList,list,0,3)
 	}
 }
