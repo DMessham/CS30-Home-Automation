@@ -13,8 +13,8 @@
 // }
   
 function draw() {
-	background(20);
-	labelDraw("Settings")
+	background(backgroundColor);
+	labelDraw("Settings/List Control Testing")
 	for(let list=0; list<visualSettingsList.length; list++){
 		listEntry(3,35,width-5,25,visualSettingsList,list,0,3)
 	}

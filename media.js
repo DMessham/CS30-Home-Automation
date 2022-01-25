@@ -39,8 +39,8 @@ function preload(){
 function draw() {
   drawWidth = width*0.8;
   artSize = 300
-  background(20);
-  labelDraw("Media Player")
+  background(backgroundColor);
+  labelDraw("Media Player (Non Functional)")
   mediaLogic(media0)
   drawMediaStat(media0, 7,60,drawWidth,albumArt, artSize, deviceIcon)
   mediaControlBG(media0, artSize+5, 170, drawWidth-artSize, (drawWidth-artSize)/6, 15)

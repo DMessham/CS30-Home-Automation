@@ -56,19 +56,20 @@ let timeDelay = 700//min time between inputs
 
 let render
 let canvasDiv
+let backgroundColor = [30,45,30]
 
 function setup(){
 canvasDiv = document.getElementById('jscanvas');
 let width = canvasDiv.offsetWidth;
 let height = canvasDiv.offsetHeight;
-let render = createCanvas(width-5, 320).parent("jscanvas");
-render.style('margin', '-15px');
+let render = createCanvas(width-15, 450).parent("jscanvas");
+render.style('margin', '-10px');
 }
 
 function windowResized() {
   let width = canvasDiv.offsetWidth;
   let height = canvasDiv.offsetHeight;
-  resizeCanvas(width-5, 320);
+  resizeCanvas(width-15, 450);
 }
 
 function labelDraw(name) {
@@ -160,7 +161,7 @@ function progress(x,y,width,height,value,fillCol='green',bgCol='gray',txt='',bor
 function altProgress(x,y,itemWidth,itemHeight,value,txt,visualPosOffset,spacing,maxVal=100){
   let visualPos = 1 + visualPosOffset
 let accent="green"
-  if(value<0||value>100){accent="red"}
+  if(value<15||value>82.5){accent="red"}
   else if(value<50){accent="orange"}
 		//bg
 		fill(60)

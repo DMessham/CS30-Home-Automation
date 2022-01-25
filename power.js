@@ -8,8 +8,8 @@
 
 
 function draw() {
-  background(20);
-  labelDraw("Power & Meters")
+  background(backgroundColor);
+  labelDraw("Power,Fuel & Other Meters (janky AF)")
   drawBattStat(bat0, 10,55,drawWidth)
   drawBattStat(bat1, 10,105,drawWidth)
   drawPowerStat(acIn0, 10,155,drawWidth)

@@ -37,7 +37,7 @@ let climate0 = {
   active:false,
   zones:0,
   tempUnit:"C",
-  name:"House",
+  name:"Camper",
   setTemp:22,
   curTemp:15,
   canHeat:true,
@@ -101,7 +101,7 @@ let climates = [//janky workaround
 ]
 
 function draw() {
-  background(20);
+  background(backgroundColor);
   labelDraw("Lights & Climate Control (buttons do not change values,lights broken)")
   //drawLightStatFallback(light0, 7,50,drawWidth);
   //drawLightStatFallback(light1, 7,90,drawWidth)
@@ -109,7 +109,7 @@ function draw() {
     //drawControls(3,35,width-5,25,lightList,list,0,3)
 	  //listEntry(3,35,width-5,25,lightList,list,0,3,"toggleSlider")
     //console.log("drew lights,begin outside temp")
-    altProgress(3,35,width-5,25,(outsideInfo.temp+50),"Outside: "+(outsideInfo.temp)+""+outsideInfo.tempUnit,lightList.length,3,100)
+    altProgress(3+58,35,width-5-2*(59),25,(outsideInfo.temp+50),"Outside: "+(outsideInfo.temp)+""+outsideInfo.tempUnit,lightList.length,3,100)
     //console.log("drew outside temp,begin temp controls")
     //toggleSlide2(3,35,width-5,25,climates[0][2],climates[0][3],climates[0][1],lightList.length+list,3)
 	}
