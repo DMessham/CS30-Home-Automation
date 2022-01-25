@@ -379,11 +379,12 @@ function listEntry(x,y,itemWidth,itemHeight,listTable,itemID,visualPosOffset,spa
 	}
 }
 
-function toggleSlide(x,y,itemWidth,itemHeight,listTable,itemID,visualPosOffset,spacing){
+function toggleSlide(x,y,itemWidth,itemHeight,txt,value,toggle,visualPosOffset,spacing){
   let accent="green"
-  let visualPos = itemID + visualPosOffset
-  let txt = listTable[itemID][2]
-  let txt2 = listTable[itemID][1]+":"+listTable[itemID][3]
+  let visualPos = visualPosOffset
+  //let txt = listTable[itemID][2]
+  let txt2 = value
+  let txt3 = "listTable[itemID][1]"
   //bg
   fill(60)
       strokeWeight(2)
@@ -392,39 +393,38 @@ function toggleSlide(x,y,itemWidth,itemHeight,listTable,itemID,visualPosOffset,s
   //fill
   stroke("darkCyan");
   fill(accent)
-  rect(x+2*(spacing+itemHeight),y+((itemHeight+2*spacing)*visualPos+spacing),(listTable[itemID][2]/100)*(itemWidth-2*(itemHeight+spacing)), itemHeight,5)
+  rect(x+2*(spacing+itemHeight),y+((itemHeight+2*spacing)*visualPos+spacing),(value/100)*(itemWidth-2*(itemHeight+spacing)), itemHeight,5)
   //text
   noStroke();
   fill('white')
   textSize(17)
-  text(txt,x+5,(y+((itemHeight+2*spacing)*visualPos+spacing))+5,width-5,itemHeight-5)
-		textAlign(RIGHT)
-		text(txt2,x+itemWidth-35,(y+((itemHeight+2*spacing)*visualPos+spacing))+5,itemHeight+10, itemHeight-5)
-		textAlign(LEFT)
+  textAlign(LEFT)
+  text(txt,x+(2*itemHeight+3*spacing),(y+((itemHeight+2*spacing)*visualPos+spacing))+5,width-5,itemHeight-5)
+	textAlign(RIGHT)
+  text(txt2,x+itemWidth-2*(4*itemHeight+5*spacing),(y+((itemHeight+2*spacing)*visualPos+spacing))+5,2*(4*itemHeight+5*spacing), itemHeight-5)
+	textAlign(LEFT)
 
-  //textAlign(CENTER)
-  //text(txt,x+5,(y+((itemHeight+2*spacing))*visualPos+spacing)+5,itemWidth-2*(itemHeight+spacing),itemHeight-5)
-  //textAlign(LEFT)
-
-  if(listTable[itemID][2]==true){accent="green"}//set button accent color according to state
+  if(toggle==true){accent="green"}//set button accent color according to state
     else{accent="darkCyan"}
-  drawButton(x,y+((itemHeight+2*spacing)*visualPos+spacing),2*itemHeight, itemHeight, listTable[itemID][3], "green", 230);
+  drawButton(x,y+((itemHeight+2*spacing)*visualPos+spacing), 2*itemHeight, itemHeight, toggle, "green", 230);
   if(mouseArea(x,y+((itemHeight+2*spacing)*visualPos+spacing),2*itemHeight, itemHeight)&&mouseIsPressed){//see if the mouse is in the area of a button and if it is being pressed
     if(millis()-timeBase>=timeDelay){
-      if(listTable[itemID][3]==false){
-        listTable[itemID][3]=true
+      if(toggle==false){
+        toggle=true
         timeBase = millis()//reset the delay for a button press
-        console.log(listTable[itemID][1] + "(toggle+slide-toggle):" +listTable[itemID][3])}//set relay state to true if it is false
-      else(listTable[itemID][3]=false)//set it to false if it is anything else
+        console.log(txt + "(toggle+slide-toggle):" +toggle)
+      }
+      else(toggle=false)//set it to false if it is anything else
         timeBase = millis()//reset the delay for a button press
-        console.log(listTable[itemID][1] + "(toggle+slide-toggle):" +listTable[itemID][3])
+        console.log(txt + "(toggle+slide-toggle):" +toggle)
     }
   }
   if(mouseArea(x+(spacing+itemHeight),y+((itemHeight+2*spacing)*visualPos+spacing),itemWidth-((2*itemHeight)+spacing), itemHeight)&&mouseIsPressed){
-    listTable[itemID][2] = round((mouseX-(x+(spacing+itemHeight)))/(itemWidth-((2*itemHeight)+spacing))*100,1)//set variable to new value
-    console.log(listTable[itemID][1]+" is now set to "+listTable[itemID][2])
-    return round((mouseX-(x+(spacing+itemHeight)))/(itemWidth-((2*itemHeight)+spacing))*100,1)
+    value = round((mouseX-(x+(spacing+itemHeight)))/(itemWidth-((2*itemHeight)+spacing))*100,1)//set variable to new value
+    console.log(txt+" is now set to "+value)
+    
   }
+  return(toggle,value)
 }
 
 function toggleSlide2(x,y,itemWidth,itemHeight,sliderVal,toggleVal,title,visualPosOffset,spacing,maxVal,altval=""){
