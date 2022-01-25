@@ -158,17 +158,18 @@ function progress(x,y,width,height,value,fillCol='green',bgCol='gray',txt='',bor
 }
 
 function altProgress(x,y,itemWidth,itemHeight,value,txt,visualPosOffset,spacing,maxVal=100){
-  let col="green"
   let visualPos = 1 + visualPosOffset
 let accent="green"
+  if(value<0||value>100){accent="red"}
+  else if(value<50){accent="orange"}
 		//bg
 		fill(60)
       	strokeWeight(1)
-      	stroke("gray");
+      	stroke(accent);
 		rect(x,y+((itemHeight+2*spacing)*visualPos+spacing), itemWidth-0*(itemHeight+spacing), itemHeight,5)
 		//fill
-		stroke("light"+col);
-		fill(col)
+		stroke("light"+accent);
+		fill(accent)
 		rect(x,y+((itemHeight+2*spacing)*visualPos+spacing), (itemWidth-0*(itemHeight+spacing))*(value/maxVal), itemHeight,5)
 		//text
 		noStroke();

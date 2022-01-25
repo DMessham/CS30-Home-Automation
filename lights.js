@@ -102,7 +102,7 @@ let climates = [//janky workaround
 
 function draw() {
   background(20);
-  labelDraw("Lights & Climate Control (VERY BROKEN RN)")
+  labelDraw("Lights & Climate Control (buttons do not change values,lights broken)")
   //drawLightStatFallback(light0, 7,50,drawWidth);
   //drawLightStatFallback(light1, 7,90,drawWidth)
   for(let list=0; list<lightList.length+climates.length; list++){
