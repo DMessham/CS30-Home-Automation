@@ -16,6 +16,6 @@ function draw() {
 	background(backgroundColor);
 	labelDraw("Settings/List Control Testing")
 	for(let list=0; list<visualSettingsList.length; list++){
-		listEntry(3,35,width-5,25,visualSettingsList,list,0,3)
+		listEntry(3,35,width-5,25,visualSettingsList,list,0,3,type=visualSettingsList[list][0],txt="Something has gone wrong!")
 	}
 }

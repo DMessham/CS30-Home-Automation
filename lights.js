@@ -113,9 +113,9 @@ function draw() {
     drawControls(3,35,width-5,25,lights2,list,0,3)
     altProgress(3+58,35,width-5-2*(59),25,(outsideInfo.temp+50),"Outside: "+(outsideInfo.temp)+""+outsideInfo.tempUnit,lightList.length,3,100)
     //drawTemp(3,35,width-5,lights2.length+2,3)
-    toggleSlide2(3,35,width-5,25,climate0.setTemp,climate0.active,climate0.name,lightList.length+2,3,)//placeholder until i figure what the hell is going on
-    toggleSlide2(3,35,width-5,25,climate1.setTemp,climate1.active,climate1.name,lightList.length+3,3)
-    toggleSlide2(3,35,width-5,25,climate2.setTemp,climate2.active,climate2.name,lightList.length+4,3)
+    climate0.setTemp = toggleSlide(3,35,width-5,25,climate0.name,climate0.setTemp,climate0.active,lightList.length+2,3,)//placeholder until i figure what the hell is going on
+    climate1.setTemp = toggleSlide(3,35,width-5,25,climate1.name,climate1.setTemp,climate1.active,lightList.length+3,3)
+    climate2.setTemp = toggleSlide(3,35,width-5,25,climate2.name,climate2.setTemp,climate2.active,lightList.length+4,3)
 	}
 
 }

@@ -35,10 +35,11 @@ let visualSettings = {
   testProgress:50,
   testLoading:"ayylmao",
   testToggleSlider:[20,false],
+  testInvalid:"This is an invalid list entry type",
 }
 
 let visualSettingsList = [//Used for the gui settings page, follows format of [name,type(0toggle,1number,2int,3text,4dropdown)value,locked,Options(offstate/onstate,min/max,variables)]
-  ["toggle","testToggle",visualSettings.testToggle],
+  ["toggle","testToggle",visualSettings.testToggle,],
   ["number","testNum",visualSettings.testNum,0,100],
   ["numSlider","testInt",visualSettings.testInt,0,100],
   ["textEntry","testText",visualSettings.testText,],
@@ -46,7 +47,8 @@ let visualSettingsList = [//Used for the gui settings page, follows format of [n
   ["slider","testSlider",visualSettings.testSlider,0,100],
   ["progress","testProgress",visualSettings.testProgress,0,100],
   ["loading","testLoading"],
-  ["toggleSlide","testToggle+Slider",visualSettings.testToggleSlider[0],visualSettings.testToggleSlider[1],0,100],
+  ["invalid","testInvalidEntry",visualSettings.testInvalid],
+  //["toggleSlide","testToggle+Slider",visualSettings.testToggleSlider[0],visualSettings.testToggleSlider[1],0,100],
 
 ]
 
@@ -182,17 +184,20 @@ let accent="green"
 		textAlign(LEFT)
 }
 
-function listEntry(x,y,itemWidth,itemHeight,listTable,itemID,visualPosOffset,spacing, type= listTable[itemID][0],txt="Something has gone wrong!"){//the last one is to allow for "forced itemtypes"
+function listEntry(x,y,itemWidth,itemHeight,listTable,itemID,visualPosOffset,spacing, type=listTable[itemID][0],txt="Something has gone wrong!"){//the last one is to allow for "forced itemtypes"
 	textAlign(LEFT)
   let accent="green"
   let visualPos = itemID + visualPosOffset
   //console.log("passed list init, figuring out what itemtype this entry is")
 	if(type=="toggle"){
     //console.log("draw toggleswitch")
-		txt = listTable[itemID][1]
+    let txt = listTable[itemID][1] +":"+listTable[itemID][2]
+		
+
 		if(listTable[itemID][2]==true){accent="green"}//set button accent color according to state
     	else{accent="darkCyan"}
-		drawButton(x,y+itemHeight*(visualPos+spacing),itemWidth, itemHeight, txt, accent, 230);
+	  drawButton(x,y+((itemHeight+2*spacing)*visualPos+spacing),itemWidth, itemHeight, txt, accent, 230);
+
 	  	if(mouseArea(x,y+((itemHeight+2*spacing)*visualPos+spacing),itemWidth, itemHeight)&&mouseIsPressed){//see if the mouse is in the area of a button and if it is being pressed
 			if(millis()-timeBase>=timeDelay){
 				if(listTable[itemID][2]==false){listTable[itemID][2]=true}//set relay state to true if it is false
@@ -259,10 +264,11 @@ function listEntry(x,y,itemWidth,itemHeight,listTable,itemID,visualPosOffset,spa
 		let txt = listTable[itemID][1] +":"+listTable[itemID][2]
 		drawButton(x,y+((itemHeight+2*spacing)*visualPos+spacing), itemWidth, itemHeight, txt, "cyan", 230);
 		if(mouseArea(x,y+((itemHeight+2*spacing)*visualPos+spacing), itemWidth, itemHeight)&&mouseIsPressed){//see if the mouse is in the area of a button and if it is being pressed
-			if(millis()-timeBase>=timeDelay){
-				if(listTable[itemID][2]<listTable[itemID][4]){listTable[itemID][2]++}//set relay state to true if it is false
-		  		timeBase = millis()//reset the delay for a button press
-		  		console.log(txt + "(textentry):" +vlistTable[itemID][2])
+			if(millis()-timeBase>=timeDelay&&mouseIsPressed){
+				timeBase = millis()//reset the delay for a button press
+        newval = prompt("Enter new value for "+listTable[itemID][1]+": \nDefaults to current value ", listTable[itemID][2]);
+        if(newval!=null){listTable[itemID][2]=newval}
+		  	console.log(txt + "(textentry):" +listTable[itemID][2])
 			}
 		}
 	}
@@ -338,6 +344,10 @@ function listEntry(x,y,itemWidth,itemHeight,listTable,itemID,visualPosOffset,spa
 		text(txt,x+itemWidth-35,(y+((itemHeight+2*spacing)*visualPos+spacing))+5,itemHeight+10, itemHeight-5)
 		textAlign(LEFT)
 	}
+  else if(type=="toggleSlide"||type=="light"){
+    //console.log("draw toggle and slider combo")
+		toggleSlide(x,y+((itemHeight+2*spacing)*visualPos+spacing),itemWidth,itemHeight,listTable[itemID][2]+"%",listTable[itemID][2],listTable[itemID][3],0,spacing)
+	}
 	else if(type=="loading"){
     //console.log("draw animated indeterminate progress")
 		let accent="green"
@@ -360,22 +370,18 @@ function listEntry(x,y,itemWidth,itemHeight,listTable,itemID,visualPosOffset,spa
 		text(listTable[itemID][1],x+5,(y+((itemHeight+2*spacing)*visualPos+spacing))+5,width-5,itemHeight-5)
 		textAlign(LEFT)
 	}
-	else if(type=="toggleSlide"||type=="light"){
-    //console.log("draw toggle and slider combo")
-		toggleSlide(x,y,itemWidth,itemHeight,listTable,itemID,visualPosOffset,spacing)
-	}
+	
 	else{
-    console.warn("unable to determine type of list item, using fallback")
 		let txt = listTable[itemID][1] +":"+listTable[itemID][2]
-		fill(70)
-      	strokeWeight(2)
-      	stroke(accent);
-
-		rect(x,y+((itemHeight+2*spacing)*visualPos+spacing), itemWidth-0*(itemHeight+spacing), itemHeight,5)
-		noStroke();
-		fill('white')
-		textSize(17)
-		text(txt,x+5,(y+((itemHeight+2*spacing)*visualPos+spacing))+5,width-5,itemHeight-5)
+		drawButton(x,y+((itemHeight+2*spacing)*visualPos+spacing), itemWidth, itemHeight, txt, "cyan", 230);
+		if(mouseArea(x,y+((itemHeight+2*spacing)*visualPos+spacing), itemWidth, itemHeight)&&mouseIsPressed){//see if the mouse is in the area of a button and if it is being pressed
+			if(millis()-timeBase>=timeDelay&&mouseIsPressed){
+				timeBase = millis()//reset the delay for a button press
+        let newval = prompt("\nAn internal error occured, fallingback to user text input.\n(MAY CAUSE ERRORS,NO SANITY CHECKS AVAILABLE)\nEnter new value for "+listTable[itemID][1]+": \nDefaults to current value.", listTable[itemID][2]);
+        if(newval!=null){listTable[itemID][2]=newval}
+		  	console.log(txt + "(Fallback):" +listTable[itemID][2])
+			}
+		}
 	}
 }
 
