@@ -140,7 +140,7 @@ function mediaControlBG(source, x, y, wid, size, space){
 }
 
 function mouseClicked() {
-  mediaControl(media0, artSize+5, 170, drawWidth-artSize, (drawWidth-artSize)/6, 15)
+   mediaControl(media0, artSize+5, 170, drawWidth-artSize, (drawWidth-artSize)/6, 15)
 }
 
 function mediaControl(source,x,y,wid,size,space){
