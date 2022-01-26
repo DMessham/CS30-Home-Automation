@@ -130,22 +130,7 @@ function mediaButton(icon,x,y,offset,size,space,bgColor,control){
   image(icon,x + offset*size+(offset+1)*space, y+space, size, size)
   return(mouseArea(x + offset*size+(offset+1)*space, y+space,size, size))
 }
-function mediaOpt(source){}
 
-function mediaBack(source){}
-
-function mediaPlayPause(source){
-  if(source.mediaState == 'pause'){
-    source.mediaState = 'play';
-  }
-  else if(source.mediaState == 'play'){
-    source.mediaState = 'pause';
-  }
-
-}
-
-function mediaNext(source){}
-function mediaOpen(source){}
 
 function progress(x,y,width,height,value,fillCol='green',bgCol='gray',txt='',borCol=bgCol,borThk=1){
   strokeWeight(1);
@@ -627,29 +612,6 @@ let gpioPins = [//pin,name,type,active/state
               [0,"gpio0","output",false],
               [1,"gpio1","output",false],
               [2,"gpio2","output",false]]
-
-
-//media
-let media0 = {
-  sourceName:"[SOURCE_NAME]",
-  sourceID:"SOURCE",
-  sourceType:"[SOURCE_TYPE]",
-  sourceIcon:"none",
-  mediaType:"audio",
-  mediaCodec:"none",
-  mediaState:"pause",
-  mediaStateString:"Stopped",
-  mediaTitle:"[TEST_SONG_TITLE]",
-  mediaArtistName:"[TEST_SONG_ARTIST]",
-  mediaAlbumName:"[TEST_ALBUM_NAME]",
-  mediaAlbumArt:"null",
-  mediaPlayedSec:60,
-  mediaIsLive:false,
-  mediaLengthSec:200,
-  mediaProgress:30,
-}
-
-
 
 //
 
