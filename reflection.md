@@ -1,8 +1,10 @@
 todo:
 rework buttons using  mouseClicked()
-implement file opening fo media
+implement file opening for media
 implemnt rpi control
+refactor everthing
+improve efficency
 
 
-difficulty:
--- variable - function interaction
+Areas i found difficult :
+variable - function interaction

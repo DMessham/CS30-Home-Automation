@@ -437,7 +437,7 @@ homeBG {
 	background-color: rgba(0, 0, 0, 0);
 	padding:1px;
 	border: none;
-	color: white;
+	color: palegoldenrod;
 	display: inline;
 	border-color: rgba(100, 114, 100, 0.42);
 	border-width: 0.25px;
@@ -470,8 +470,8 @@ homeBG {
 }
 
 .navbar .name{
-	background-image: url("style/BG/bar2_orange.bmp");
-	background-color: rgb(20, 59, 33);
+	/*background-image: url("style/BG/bar2_orange.bmp");
+	background-color: rgb(20, 59, 33);*/
 	border-radius: 4px;
 	font-size:22px;
 	padding: 7.5px;
