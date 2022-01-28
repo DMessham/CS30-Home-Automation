@@ -414,8 +414,9 @@ homeBG {
 .navbar{
 	background-color: rgb(20, 59, 33, 0);
 	background-image: url("style/BG/bar2_grey.bmp");
-	background-size: contain;
+	background-repeat: repeat;
 	text-align: center;
+	font-size:23px;
 	padding: 0px;
 	margin: 0px;
 	margin-left:3.5%;
@@ -429,19 +430,20 @@ homeBG {
 	list-style-type: none;
 	position: -webkit-sticky; /* Safari */
 	position: sticky;
-	top: 10px;
+	top: 15px;
 }
 
 
 .navbar li {
 	background-color: rgba(0, 0, 0, 0);
-	padding:1px;
+	padding:0px;
+	font-size:inherit;
 	border: none;
 	color: palegoldenrod;
 	display: inline;
 	border-color: rgba(100, 114, 100, 0.42);
 	border-width: 0.25px;
-	border-radius: 7px;
+	border-radius: 5px;
 	margin-left:-1px;
 	margin-right:-1px;
 }
@@ -450,10 +452,10 @@ homeBG {
 	margin-left:-1px;
 	margin-right:-1px;
 	border: none;
-	font-size:22px;
+	font-size:inherit;
 	text-decoration: none;
-	padding: 7px;
-	border-radius: 4px;
+	padding: 10px;
+	border-radius: inherit;
 	background-size: cover;
 	background-repeat: repeat-x;
 }
@@ -473,7 +475,7 @@ homeBG {
 	/*background-image: url("style/BG/bar2_orange.bmp");
 	background-color: rgb(20, 59, 33);*/
 	border-radius: 4px;
-	font-size:22px;
+	font-size:inherit;
 	padding: 7.5px;
 	padding-left:9px;
 	padding-right:9px;
